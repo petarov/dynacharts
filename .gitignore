@@ -1,0 +1,8 @@
+### ignored ###
+
+#eclipse
+.settings/*
+bin/*
+
+#misc
+*.log
