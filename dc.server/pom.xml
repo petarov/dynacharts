@@ -70,6 +70,7 @@
   <build>
     <finalName>dc.server</finalName>
     <plugins>
+        
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -79,6 +80,7 @@
           <target>${jdk.version}</target>
         </configuration>
       </plugin>
+      
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
@@ -89,7 +91,8 @@
               <contextPath>/</contextPath>
           </webApp>            
         </configuration>
-      </plugin>     
+      </plugin>
+      
     </plugins>    
   </build>
 </project>
