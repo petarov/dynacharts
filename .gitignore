@@ -1,8 +1,10 @@
 ### ignored ###
 
 #eclipse
-.settings/*
-bin/*
+RemoteSystemsTempFiles/*
+.metadata/*
+#eclipse subfolders
+*/.settings/*
 
 #misc
 *.log
