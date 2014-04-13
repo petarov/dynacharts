@@ -7,10 +7,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 @ApplicationPath("resources")
 public class Application extends ResourceConfig {
     public Application() {
-    	/**
-    	 * Location of REST resources
-    	 */
-        packages("net.vexelon.dc.server.resources",
-        		"com.fasterxml.jackson.jaxrs.json");
+        packages("net.vexelon.dc.server.resources", // App REST resources
+        		"com.fasterxml.jackson.jaxrs.json", // support for JSON Body Reader/Writer
+        		"org.glassfish.jersey.examples.httppatch" // support for HTTP PATCH
+        		);
     }
 }
