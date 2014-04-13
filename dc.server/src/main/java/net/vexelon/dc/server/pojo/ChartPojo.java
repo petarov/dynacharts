@@ -1,6 +1,6 @@
 package net.vexelon.dc.server.pojo;
 
-public class ChartPojo {
+public class ChartPojo extends PojoAbstact {
 	
 	private String name;
 	private String color;

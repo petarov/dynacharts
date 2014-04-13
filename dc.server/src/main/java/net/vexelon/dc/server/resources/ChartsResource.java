@@ -14,6 +14,8 @@ import org.glassfish.jersey.examples.httppatch.PATCH;
 
 import net.vexelon.dc.server.Constants;
 import net.vexelon.dc.server.pojo.ChartPojo;
+import net.vexelon.dc.server.services.ChartsService;
+import net.vexelon.dc.server.services.IChartsService;
  
 /**
  * Charts resources stub. 
@@ -27,13 +29,15 @@ import net.vexelon.dc.server.pojo.ChartPojo;
 @Produces(MediaType.APPLICATION_JSON)
 public class ChartsResource {
 	
+	protected IChartsService chartService = ChartsService.newInstance(); 
+	
 	@GET
     public Response getResources() { 
 		System.out.println("@GET ROOT");
 		
 		return Response.status(Response.Status.OK)
 				.type(MediaType.APPLICATION_JSON)
-				.entity("{id: 'http://localhost:8080/test'}")
+				.entity(chartService.getResources())
 				.build();
 	}
 	
