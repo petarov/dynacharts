@@ -35,11 +35,12 @@ public class ChartsResource {
 	}	
  
 	@POST @Path("/create")
-    public Response createChart(String json) {
-		System.out.println(json);
+    public Response createChart(ChartPojo json) {
+//		System.out.println(json);
 		Response r = Response.status(Response.Status.OK)
 				.type(MediaType.APPLICATION_JSON)
-				.entity(new Gson().toJson(json))
+//				.entity(new Gson().toJson(json))
+				.entity(json)
 				.build();
 		return r;
 	}

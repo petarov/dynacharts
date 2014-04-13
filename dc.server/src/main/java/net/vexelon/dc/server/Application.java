@@ -10,6 +10,7 @@ public class Application extends ResourceConfig {
     	/**
     	 * Location of REST resources
     	 */
-        packages("net.vexelon.dc.server.resources");
+        packages("net.vexelon.dc.server.resources",
+        		"com.fasterxml.jackson.jaxrs.json");
     }
 }
