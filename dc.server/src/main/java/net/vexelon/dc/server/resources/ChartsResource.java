@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.examples.httppatch.PATCH;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.vexelon.dc.server.Constants;
 import net.vexelon.dc.server.pojo.ChartPojo;
@@ -33,11 +35,13 @@ import net.vexelon.dc.server.services.IChartsService;
 @Produces(MediaType.APPLICATION_JSON)
 public class ChartsResource {
 	
+	private static final Logger log = LoggerFactory.getLogger(ChartsResource.class);
+	
 	protected IChartsService chartService = ChartsService.newInstance(); 
 	
 	@GET
     public Response getResources() { 
-		System.out.println("@GET ROOT");
+		log.debug("@GET ROOT");
 		
 		return Response.status(Response.Status.OK)
 				.type(MediaType.APPLICATION_JSON)
@@ -47,7 +51,7 @@ public class ChartsResource {
 	
 	@GET @Path("/{id}")
     public Response getChart(@PathParam("id") String chartId) { 
-		System.out.println("@GET " + chartId);
+		log.debug("@GET {}", chartId);
 		
 		return Response.status(Response.Status.OK)
 				.type(MediaType.TEXT_PLAIN)
@@ -56,7 +60,7 @@ public class ChartsResource {
 	
 	@POST
     public Response createChart(ChartPojo json) {
-		System.out.println("@POST");
+		log.info("@POST");
 		return Response.status(Response.Status.OK)
 				.type(MediaType.APPLICATION_JSON)
 //				.entity(new Gson().toJson(json))
@@ -66,7 +70,7 @@ public class ChartsResource {
 
 	@PATCH
 	public Response updateChart(ChartPojo json) {
-		System.out.println("@PATCH");
+		log.debug("@PATCH");
 		return Response.status(Response.Status.OK)
 				.type(MediaType.APPLICATION_JSON)
 				.entity(json)
@@ -78,7 +82,7 @@ public class ChartsResource {
 		
 		//TODO: proper authorization
 		
-		System.out.println("@DELETE " + chartId);
+		log.debug("@DELETE {}", chartId);
 		return Response.status(Response.Status.OK)
 				.type(MediaType.TEXT_PLAIN)
 				.build();

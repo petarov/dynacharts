@@ -1,8 +1,4 @@
 /*
- * Copyright (C) 2013 next GmbH
- * 
-*/
-/*
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
 */
