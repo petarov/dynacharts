@@ -18,7 +18,7 @@ import org.glassfish.jersey.examples.httppatch.PATCH;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.vexelon.dc.server.Constants;
+import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.pojo.ChartPojo;
 import net.vexelon.dc.server.services.ChartsService;
 import net.vexelon.dc.server.services.IChartsService;
@@ -30,7 +30,7 @@ import net.vexelon.dc.server.services.IChartsService;
  * @author ppetrov
  *
  */
-@Path(Constants.RESOURCE_CHARTS_1_0)
+@Path(Globals.RESOURCE_CHARTS_1_0)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ChartsResource {

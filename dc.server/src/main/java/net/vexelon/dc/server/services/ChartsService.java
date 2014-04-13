@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-import net.vexelon.dc.server.Constants;
+import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.pojo.ChartPojo;
 
 public class ChartsService implements IChartsService {
@@ -22,7 +22,7 @@ public class ChartsService implements IChartsService {
 
 	@Override
 	public String getName() {
-		return Constants.RESOURCE_CHARTS_1_0;
+		return Globals.RESOURCE_CHARTS_1_0;
 	}
 
 	@Override

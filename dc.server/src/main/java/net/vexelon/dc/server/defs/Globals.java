@@ -2,13 +2,13 @@
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
 */
-package net.vexelon.dc.server;
+package net.vexelon.dc.server.defs;
 
 /**
  * Global constants
  *
  */
-public final class Constants {
+public final class Globals {
 	
 	public static final String VENDOR_NAME = "Vexelon.NET Services";
 	
