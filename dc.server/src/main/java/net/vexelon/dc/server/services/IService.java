@@ -1,3 +1,7 @@
+/*
+ * Copyright (C) 2014 Vexelon.NET Services
+ * http://vexelon.net
+*/
 package net.vexelon.dc.server.services;
 
 import java.util.Map;
