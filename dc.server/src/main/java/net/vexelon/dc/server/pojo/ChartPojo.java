@@ -1,12 +1,27 @@
 package net.vexelon.dc.server.pojo;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement 
 public class ChartPojo {
 	
-	public String name;
-	public String color;
-	public int size;
-
+	private String name;
+	private String color;
+	private int size;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
+	}
 }

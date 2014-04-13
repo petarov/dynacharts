@@ -10,6 +10,6 @@ public class Application extends ResourceConfig {
     	/**
     	 * Location of REST resources
     	 */
-        packages("net.vexelon.dc.server.resources, net.vexelon.dc.server.pojo");
+        packages("net.vexelon.dc.server.resources");
     }
 }
