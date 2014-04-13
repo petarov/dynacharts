@@ -15,20 +15,22 @@ public class ServletBootContext implements ServletContextListener {
 	private static final Logger log = LoggerFactory.getLogger(ServletBootContext.class);
 
 	public ServletBootContext() {
-		// TODO Auto-generated constructor stub
+		// empty
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		// TODO Auto-generated method stub
 		log.info("*** App exit ***");
+		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		log.info("*** App boot ***");
+		
+		Bootstrap bootstrap = new Bootstrap();
 		try {
-			SanityTest.run();
+			bootstrap.init();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

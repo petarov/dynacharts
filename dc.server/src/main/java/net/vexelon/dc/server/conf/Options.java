@@ -19,15 +19,6 @@ public enum Options {
 	
 	SERVER_NAME("server.name", String.class, true),
 	SERVER_ADDRESS("server.address", String.class, true),
-	SERVER_PORT("server.port", Integer.class, true),
-	
-	/*
-	 * MyNextGasStop App properties 
-	 */
-	
-	MNGS_GRABBER_ADDRESS("mngs.grabber.http.address", String.class),
-	MNGS_GRABBER_PORT("mngs.grabber.http.port", Integer.class),
-	MNGS_GRABBER_URI("mngs.grabber.http.uri", String.class),
 	
 	;
 	

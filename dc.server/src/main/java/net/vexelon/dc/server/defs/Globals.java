@@ -26,7 +26,7 @@ public final class Globals {
 	/*
 	 * Name of server configuration file
 	 */
-	public static final String CONF_SERVER = "server.conf";
+	public static final String SERVER_CONF_FILE = "server.conf";
 	
 	/**
 	 * Resources names
