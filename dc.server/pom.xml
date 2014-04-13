@@ -97,6 +97,7 @@
         <version>${jettyVersion}</version>
         <configuration>
           <scanIntervalSeconds>5</scanIntervalSeconds>
+          <contextXml>${basedir}/src/main/webapp/WEB-INF/jetty-context.xml</contextXml>
           <webApp>
               <contextPath>/</contextPath>
           </webApp>            
