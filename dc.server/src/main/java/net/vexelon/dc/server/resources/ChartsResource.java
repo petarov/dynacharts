@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.examples.httppatch.PATCH;
 
+import net.vexelon.dc.server.Constants;
 import net.vexelon.dc.server.pojo.ChartPojo;
  
 /**
@@ -21,7 +22,7 @@ import net.vexelon.dc.server.pojo.ChartPojo;
  * @author ppetrov
  *
  */
-@Path("/charts")
+@Path(Constants.RESOURCE_CHARTS_1_0)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ChartsResource {
