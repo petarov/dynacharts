@@ -1,7 +1,7 @@
 DynaCharts
 ===========
 
-Dynamic Charts and Diagrams Web service
+A Web service that generates and provides real-time updates of charts and diagrams.
 
 ## Requirements
 
@@ -17,11 +17,11 @@ TODO
 
 Go to directory `dc.server`. To clean the project use:
 
-  mvn clean
+    mvn clean
 
 To deploy the app within the Jetty application server:
 
-  mvn jetty:start
+    mvn jetty:start
 
 
 ## License
