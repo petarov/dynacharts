@@ -8,10 +8,10 @@ import com.google.gson.Gson;
 
 public abstract class AbstactPojo {
 	
-	protected static final Gson s_Gson = new Gson();
+	protected static final Gson GSON = new Gson();
 	
 	public String toJSON() {
-		return s_Gson.toJson(this);
+		return GSON.toJson(this);
 	}
 
 }
