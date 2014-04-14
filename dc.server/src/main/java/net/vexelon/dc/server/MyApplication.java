@@ -19,14 +19,11 @@ public class MyApplication extends ResourceConfig {
 	
 	@Inject
     public MyApplication(ServiceLocator serviceLocator) {
-//    	register(new ApplicationBinder());
         packages("net.vexelon.dc.server.resources", // App REST resources
         		"com.fasterxml.jackson.jaxrs.json", // support for JSON Body Reader/Writer
         		"org.glassfish.jersey.examples.httppatch" // support for HTTP PATCH
         		);
 
-        System.out.println("App start here");
-        
         // See https://hk2.java.net/guice-bridge/
         
         /*

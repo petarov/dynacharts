@@ -9,13 +9,9 @@ import net.vexelon.dc.server.conf.Configuration;
 import net.vexelon.dc.server.conf.Options;
 import net.vexelon.dc.server.conf.SysPropsConfiguration;
 import net.vexelon.dc.server.modules.AbstractModuleBase;
-import net.vexelon.dc.server.modules.ServiceModule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 /**
  * 

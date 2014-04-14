@@ -12,21 +12,16 @@ import org.slf4j.LoggerFactory;
 
 public class MyServletContextListener implements ServletContextListener {
 	
-	private static final Logger log = LoggerFactory.getLogger(MyServletContextListener.class);
-
-	public MyServletContextListener() {
-		// empty
-	}
+	private static final Logger logger = LoggerFactory.getLogger(MyServletContextListener.class);
 
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		log.info("*** App exit ***");
-		// TODO Auto-generated method stub
+		logger.info("*** App exit ***");
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		log.info("*** App boot ***");
+		logger.info("*** App boot ***");
 
 		Bootstrap bootstrap = new Bootstrap();
 		try {
