@@ -10,7 +10,7 @@ package net.vexelon.dc.server.modules;
  * @author p.petrov
  *
  */
-public class ServiceModule extends BaseModule {
+public class ServiceModule extends AbstractModuleBase {
 
 	@Override
 	protected void configure() {

@@ -6,7 +6,7 @@ package net.vexelon.dc.server.services;
 
 import java.util.Map;
 
-public interface IService {
+public interface Service {
 	
 	/**
 	 * Unique resource path

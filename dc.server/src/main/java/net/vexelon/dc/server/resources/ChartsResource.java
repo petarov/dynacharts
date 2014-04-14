@@ -20,8 +20,8 @@ import org.slf4j.LoggerFactory;
 
 import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.pojo.ChartPojo;
+import net.vexelon.dc.server.services.charts.ChartsServiceImpl;
 import net.vexelon.dc.server.services.charts.ChartsService;
-import net.vexelon.dc.server.services.charts.IChartsService;
  
 /**
  * Charts resources stub. 
@@ -37,7 +37,7 @@ public class ChartsResource {
 	
 	private static final Logger log = LoggerFactory.getLogger(ChartsResource.class);
 	
-	protected IChartsService chartService = ChartsService.newInstance(); 
+	protected ChartsService chartService = ChartsServiceImpl.newInstance(); 
 	
 	@GET
     public Response getResources() { 

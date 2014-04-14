@@ -14,7 +14,7 @@ import com.google.inject.AbstractModule;
  * @author p.petrov
  *
  */
-public class BaseModule extends AbstractModule {
+public class AbstractModuleBase extends AbstractModule {
 	
 	/**
 	 * Static Configuration instance

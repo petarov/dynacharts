@@ -8,7 +8,7 @@ import net.vexelon.dc.server.conf.Configuration;
 
 import com.google.inject.Inject;
 
-public abstract class AbstractService implements IService {
+public abstract class AbstractService implements Service {
 
 	/*
 	 * Injected
