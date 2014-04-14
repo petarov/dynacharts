@@ -23,6 +23,11 @@ To deploy the app within the Jetty application server:
 
     mvn jetty:start
 
+# Development
+Information relevant to the development process.
+
+## Coding style
+Please refer to [Google Java Style](http://google-styleguide.googlecode.com/svn/trunk/javaguide.html).
 
 ## License
 Copyright (c) 2014 Vexelon.NET Services
