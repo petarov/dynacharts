@@ -4,16 +4,10 @@
 */
 package net.vexelon.dc.server;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import net.vexelon.dc.server.conf.ConfigException;
 import net.vexelon.dc.server.conf.Configuration;
 import net.vexelon.dc.server.conf.Options;
 import net.vexelon.dc.server.conf.SysPropsConfiguration;
-import net.vexelon.dc.server.defs.Globals;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
