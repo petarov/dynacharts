@@ -18,6 +18,8 @@ import org.glassfish.jersey.examples.httppatch.PATCH;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.inject.Inject;
+
 import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.pojo.ChartPojo;
 import net.vexelon.dc.server.services.charts.ChartsServiceImpl;
@@ -27,7 +29,7 @@ import net.vexelon.dc.server.services.charts.ChartsService;
  * Charts resources stub. 
  * All sub operations and requests related to CRUD of charts are described here.
  * 
- * @author ppetrov
+ * @author p.petrov
  *
  */
 @Path(Globals.RESOURCE_CHARTS_1_0)
@@ -37,7 +39,12 @@ public class ChartsResource {
 	
 	private static final Logger log = LoggerFactory.getLogger(ChartsResource.class);
 	
-	protected ChartsService chartService = ChartsServiceImpl.newInstance(); 
+	@Inject
+	protected ChartsService chartService; 
+	
+	public ChartsResource(ChartsService chartService) {
+		this.chartService = chartService;
+	}
 	
 	@GET
     public Response getResources() { 

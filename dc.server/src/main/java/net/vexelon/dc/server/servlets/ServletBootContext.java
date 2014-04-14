@@ -2,10 +2,12 @@
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
 */
-package net.vexelon.dc.server;
+package net.vexelon.dc.server.servlets;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
+import net.vexelon.dc.server.Bootstrap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +29,7 @@ public class ServletBootContext implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		log.info("*** App boot ***");
-		
+
 		Bootstrap bootstrap = new Bootstrap();
 		try {
 			bootstrap.init();
