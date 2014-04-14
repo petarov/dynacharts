@@ -8,20 +8,62 @@ import java.math.BigInteger;
 
 public interface Configuration {
 	
-	public void load() throws ConfigException;
+	/**
+	 * 
+	 * @throws ConfigException
+	 */
+	void load() throws ConfigException;
 	
-	public void reload() throws ConfigException;
+	/**
+	 * Clears all currently loaded options and reload them
+	 * @throws ConfigException
+	 */
+	void reload() throws ConfigException;
 	
-	public int getOptionsCount();
+	/**
+	 * Size of all loaded options
+	 * @return <code>Integer</code>
+	 */
+	int getOptionsCount();
+
+	/**
+	 * Get raw configuration value
+	 * @param option
+	 * @return
+	 * @throws NullPointerException
+	 */
+	Object getValue(Options option);
 	
-	public Object getValue(Options option);
+	/**
+	 * 
+	 * @param option
+	 * @return
+	 * @throws NullPointerException
+	 */
+	String getString(Options option);
 	
-	public String getString(Options option);
+	/**
+	 * 
+	 * @param option
+	 * @return
+	 * @throws NullPointerException
+	 */
+	long getLong(Options option);
 	
-	public long getLong(Options option);
+	/**
+	 * 
+	 * @param option
+	 * @return
+	 * @throws NullPointerException
+	 */
+	int getInt(Options option);
 	
-	public int getInt(Options option);
-	
-	public BigInteger getBigInteger(Options option);
+	/**
+	 * 
+	 * @param option
+	 * @return
+	 * @throws NullPointerException
+	 */
+	BigInteger getBigInteger(Options option);
 	
 }

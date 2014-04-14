@@ -95,7 +95,6 @@
     <finalName>dc.server</finalName>
     
     <pluginManagement>
-        
     <plugins>
         
       <plugin>
@@ -105,6 +104,7 @@
         <configuration>
           <source>${jdk.version}</source>
           <target>${jdk.version}</target>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
       
@@ -118,6 +118,7 @@
           <webApp>
               <contextPath>/</contextPath>
           </webApp>
+          <systemPropertiesFile>${basedir}/src/main/resources/server.conf</systemPropertiesFile>
 <!--           <systemProperties> -->
 <!--             <systemProperty> -->
 <!--              <name>log4j.configurationFile</name> -->
@@ -126,8 +127,8 @@
 <!--            </systemProperties>           -->
         </configuration>
       </plugin>
+      
     </plugins>
-    
     </pluginManagement>
         
   </build>

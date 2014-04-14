@@ -24,7 +24,7 @@ public class INIConfiguration implements Configuration {
 		// validate all mandatory options
 		Options[] options = Options.values();
 		for (Options opt : options) {
-			if (opt.isMandatory() && !properties.containsKey(opt.getName())) {
+			if (!opt.isOptional() && !properties.containsKey(opt.getName())) {
 				throw new ConfigException(opt, opt.getName() + " - Missing required option!");
 			}
 		}

@@ -13,29 +13,28 @@ package net.vexelon.dc.server.conf;
  */
 public enum Options {
 	
-	/*
-	 * Server 
-	 */
-	
-	SERVER_NAME("server.name", String.class, true),
-	SERVER_ADDRESS("server.address", String.class, true),
+	SERVER_NAME("dc.server.name", String.class),
+	SERVER_ADDRESS("dc.server.address", String.class),
 	
 	;
 	
 	String name;
 	Class<?> type;
-	boolean mandatory;
+	boolean optional;
+//	Object defaultValue;
 	
-	Options(String name, Class<?> type, boolean mandatory) {
+	Options(String name, Class<?> type, boolean optional, Object defaultValue) {
 		this.name = name;
 		this.type = type;
-		this.mandatory = mandatory;
+		this.optional = optional;
+//		this.defaultValue = defaultValue;
 	}
 	
 	Options(String name, Class<?> type) {
 		this.name = name;
 		this.type = type;
-		this.mandatory = false;		
+		this.optional = false;
+//		this.defaultValue = null;
 	}
 	
 	public String getName() {
@@ -46,8 +45,11 @@ public enum Options {
 		return this.type;
 	}
 	
-	public boolean isMandatory() {
-		return this.mandatory;
+	public boolean isOptional() {
+		return this.optional;
 	}
 
+//	public Object getDefaultValue() {
+//		return this.defaultValue;
+//	}	
 }
