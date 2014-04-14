@@ -8,6 +8,7 @@ import net.vexelon.dc.server.conf.ConfigException;
 import net.vexelon.dc.server.conf.Configuration;
 import net.vexelon.dc.server.conf.Options;
 import net.vexelon.dc.server.conf.SysPropsConfiguration;
+import net.vexelon.dc.server.modules.BaseModule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class Bootstrap {
 	
 	private static final Logger log = LoggerFactory.getLogger(Bootstrap.class);
 	
-	private Configuration _configuration = new SysPropsConfiguration();
+	private Configuration configuration = new SysPropsConfiguration();
 	
 	public void init() throws BootException {
 		
@@ -71,8 +72,8 @@ public class Bootstrap {
 		log.info("Loading configurations ...");
 		
 		try {
-			_configuration = new SysPropsConfiguration();
-			_configuration.load();
+			configuration = new SysPropsConfiguration();
+			configuration.load();
 		} catch (ConfigException e) {
 			throw new BootException("Failed to load configuration properties!", e);			
 		}
@@ -84,7 +85,12 @@ public class Bootstrap {
 		
 		//TODO sync NTP server
 		
-		log.info("{} is starting ...", _configuration.getString(Options.SERVER_NAME));		
+		/*
+		 * Init injection modules
+		 */
+		BaseModule.configurationInstance = configuration;
+		
+		log.info("{} is starting ...", configuration.getString(Options.SERVER_NAME));		
 	}
 	
 //	private void validateResourceExists(Path destination, Path resourcePath) throws IOException  {
@@ -102,10 +108,6 @@ public class Bootstrap {
 	
 	public void destroy() {
 		// Leer
-	}
-	
-	public Configuration getConfiguration() {
-		return _configuration;
 	}
 	
 }

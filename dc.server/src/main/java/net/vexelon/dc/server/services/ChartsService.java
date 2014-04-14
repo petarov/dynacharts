@@ -7,17 +7,35 @@ package net.vexelon.dc.server.services;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
+import net.vexelon.dc.server.conf.Configuration;
+import net.vexelon.dc.server.conf.Options;
 import net.vexelon.dc.server.defs.Globals;
+import net.vexelon.dc.server.modules.ServiceModule;
 import net.vexelon.dc.server.pojo.ChartPojo;
 
 public class ChartsService implements IChartsService {
 	
-	private ImmutableMap<String, String> resources = ImmutableMap.of(
-			"url", "/charts");
+	private ImmutableMap<String, String> resources;
 	
-	protected ChartsService() {
-		// no instances ...
+	/*
+	 * Injected
+	 */
+	
+	private Configuration configuration;
+	
+	@Inject
+	protected ChartsService(Configuration configuration) {
+		this.configuration = configuration;
+		
+		/*
+		 * Initializations 
+		 */
+		resources = ImmutableMap.of(
+				"url", configuration.getString(Options.SERVER_ADDRESS) + "/charts");
 	}
 
 	@Override
@@ -50,7 +68,8 @@ public class ChartsService implements IChartsService {
 	
 	// --- static -----------------------------------------------------------
 	public static IChartsService newInstance() {
-		return new ChartsService();
+		Injector injector = Guice.createInjector(new ServiceModule());
+		return injector.getInstance(ChartsService.class);
 	}
 
 }
