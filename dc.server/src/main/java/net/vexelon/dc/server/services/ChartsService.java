@@ -17,19 +17,13 @@ import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.modules.ServiceModule;
 import net.vexelon.dc.server.pojo.ChartPojo;
 
-public class ChartsService implements IChartsService {
+public class ChartsService extends AbstractService implements IChartsService {
 	
 	private ImmutableMap<String, String> resources;
 	
-	/*
-	 * Injected
-	 */
-	
-	private Configuration configuration;
-	
 	@Inject
 	protected ChartsService(Configuration configuration) {
-		this.configuration = configuration;
+		super(configuration);
 		
 		/*
 		 * Initializations 
