@@ -2,7 +2,7 @@
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
 */
-package net.vexelon.dc.server.services;
+package net.vexelon.dc.server.services.charts;
 
 import java.util.Map;
 
@@ -16,6 +16,8 @@ import net.vexelon.dc.server.conf.Options;
 import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.modules.ServiceModule;
 import net.vexelon.dc.server.pojo.ChartPojo;
+import net.vexelon.dc.server.services.AbstractService;
+import net.vexelon.dc.server.services.ServiceException;
 
 public class ChartsService extends AbstractService implements IChartsService {
 	

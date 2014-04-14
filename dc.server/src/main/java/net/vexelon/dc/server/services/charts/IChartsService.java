@@ -2,9 +2,11 @@
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
 */
-package net.vexelon.dc.server.services;
+package net.vexelon.dc.server.services.charts;
 
 import net.vexelon.dc.server.pojo.ChartPojo;
+import net.vexelon.dc.server.services.IService;
+import net.vexelon.dc.server.services.ServiceException;
 
 public interface IChartsService extends IService {
 	

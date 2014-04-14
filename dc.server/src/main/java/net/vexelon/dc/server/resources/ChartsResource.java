@@ -20,8 +20,8 @@ import org.slf4j.LoggerFactory;
 
 import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.pojo.ChartPojo;
-import net.vexelon.dc.server.services.ChartsService;
-import net.vexelon.dc.server.services.IChartsService;
+import net.vexelon.dc.server.services.charts.ChartsService;
+import net.vexelon.dc.server.services.charts.IChartsService;
  
 /**
  * Charts resources stub. 
