@@ -4,27 +4,29 @@
 */
 package net.vexelon.dc.server;
 
+import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
-
-import net.vexelon.dc.server.servlets.MyGuiceServletContextListener;
 
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.jvnet.hk2.guice.bridge.api.GuiceBridge;
 import org.jvnet.hk2.guice.bridge.api.GuiceIntoHK2Bridge;
 
-import com.google.inject.Inject;
+import com.google.inject.Guice;
 
 @ApplicationPath("resources")
-public class Application extends ResourceConfig {
+public class MyApplication extends ResourceConfig {
 	
 	@Inject
-    public Application(ServiceLocator serviceLocator) {
+    public MyApplication(ServiceLocator serviceLocator) {
+//    	register(new ApplicationBinder());
         packages("net.vexelon.dc.server.resources", // App REST resources
         		"com.fasterxml.jackson.jaxrs.json", // support for JSON Body Reader/Writer
         		"org.glassfish.jersey.examples.httppatch" // support for HTTP PATCH
         		);
 
+        System.out.println("App start here");
+        
         // See https://hk2.java.net/guice-bridge/
         
         /*
@@ -45,6 +47,6 @@ public class Application extends ResourceConfig {
 		 * services: 
 		 */
         GuiceIntoHK2Bridge guiceBridge = serviceLocator.getService(GuiceIntoHK2Bridge.class);
-        guiceBridge.bridgeGuiceInjector(MyGuiceServletContextListener.injector);
+        guiceBridge.bridgeGuiceInjector(Guice.createInjector(new MyServletModule()));
     }
 }

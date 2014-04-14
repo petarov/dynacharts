@@ -2,21 +2,19 @@
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
 */
-package net.vexelon.dc.server.servlets;
+package net.vexelon.dc.server;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import net.vexelon.dc.server.Bootstrap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ServletBootContext implements ServletContextListener {
+public class MyServletContextListener implements ServletContextListener {
 	
-	private static final Logger log = LoggerFactory.getLogger(ServletBootContext.class);
+	private static final Logger log = LoggerFactory.getLogger(MyServletContextListener.class);
 
-	public ServletBootContext() {
+	public MyServletContextListener() {
 		// empty
 	}
 

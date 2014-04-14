@@ -96,9 +96,6 @@ public class Bootstrap {
 		
 		AbstractModuleBase.configurationInstance = configuration;
 		
-		Injector injector = Guice.createInjector(new ServiceModule());
-		
-		
 		log.info("{} is starting ...", configuration.getString(Options.SERVER_NAME));		
 	}
 	

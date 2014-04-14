@@ -4,6 +4,7 @@
 */
 package net.vexelon.dc.server.resources;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,11 +19,10 @@ import org.glassfish.jersey.examples.httppatch.PATCH;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.inject.Inject;
+import com.google.inject.servlet.RequestScoped;
 
 import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.pojo.ChartPojo;
-import net.vexelon.dc.server.services.charts.ChartsServiceImpl;
 import net.vexelon.dc.server.services.charts.ChartsService;
  
 /**
@@ -35,13 +35,14 @@ import net.vexelon.dc.server.services.charts.ChartsService;
 @Path(Globals.RESOURCE_CHARTS_1_0)
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@RequestScoped
 public class ChartsResource {
 	
 	private static final Logger log = LoggerFactory.getLogger(ChartsResource.class);
 	
-	@Inject
-	protected ChartsService chartService; 
+	private ChartsService chartService; 
 	
+	@Inject
 	public ChartsResource(ChartsService chartService) {
 		this.chartService = chartService;
 	}
