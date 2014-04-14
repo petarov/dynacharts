@@ -8,7 +8,7 @@ import net.vexelon.dc.server.conf.ConfigException;
 import net.vexelon.dc.server.conf.Configuration;
 import net.vexelon.dc.server.conf.Options;
 import net.vexelon.dc.server.conf.SysPropsConfiguration;
-import net.vexelon.dc.server.modules.AbstractModuleBase;
+import net.vexelon.dc.server.di.ServletModule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,7 +90,7 @@ public class Bootstrap {
 		 */
 		log.info("Registering injectors ...");
 		
-		AbstractModuleBase.configurationInstance = configuration;
+		ServletModule.configurationInstance = configuration;
 		
 		log.info("{} is starting ...", configuration.getString(Options.SERVER_NAME));		
 	}

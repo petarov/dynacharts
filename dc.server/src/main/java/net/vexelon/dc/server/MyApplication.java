@@ -7,6 +7,8 @@ package net.vexelon.dc.server;
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
 
+import net.vexelon.dc.server.di.ServletModule;
+
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.jvnet.hk2.guice.bridge.api.GuiceBridge;
@@ -44,6 +46,6 @@ public class MyApplication extends ResourceConfig {
 		 * services: 
 		 */
         GuiceIntoHK2Bridge guiceBridge = serviceLocator.getService(GuiceIntoHK2Bridge.class);
-        guiceBridge.bridgeGuiceInjector(Guice.createInjector(new MyServletModule()));
+        guiceBridge.bridgeGuiceInjector(Guice.createInjector(new ServletModule()));
     }
 }

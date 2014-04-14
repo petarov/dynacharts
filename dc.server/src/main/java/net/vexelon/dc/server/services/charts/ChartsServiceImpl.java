@@ -6,16 +6,17 @@ package net.vexelon.dc.server.services.charts;
 
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 
 import net.vexelon.dc.server.conf.Configuration;
 import net.vexelon.dc.server.conf.Options;
 import net.vexelon.dc.server.defs.Globals;
-import net.vexelon.dc.server.modules.ServiceModule;
+import net.vexelon.dc.server.di.ServiceModule;
 import net.vexelon.dc.server.pojo.ChartPojo;
 import net.vexelon.dc.server.services.AbstractService;
 import net.vexelon.dc.server.services.ServiceException;
