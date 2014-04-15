@@ -47,6 +47,15 @@ public class ChartsResource {
 		this.chartService = chartService;
 	}
 	
+	/**
+	 * <pre>
+	 * GET /charts HTTP/1.1
+	 * Accept: application/json
+	 * </pre>
+	 * 
+	 * Get a list of available resources
+	 * @return
+	 */
 	@GET
     public Response getResources() { 
 		log.debug("@GET ROOT");
@@ -57,15 +66,17 @@ public class ChartsResource {
 				.build();
 	}
 	
-	@GET @Path("/{id}")
-    public Response getChart(@PathParam("id") String chartId) { 
-		log.debug("@GET {}", chartId);
-		
-		return Response.status(Response.Status.OK)
-				.type(MediaType.TEXT_PLAIN)
-				.build();
-	}	
-	
+	/**
+	 * <pre>
+	 * POST /charts HTTP/1.1
+	 * Accept: application/json
+	 * Content-Type: application/json
+	 * </pre>
+	 *  
+	 * Create a new chart
+	 * @param json
+	 * @return
+	 */
 	@POST
     public Response createChart(ChartPojo json) {
 		log.info("@POST");
@@ -75,9 +86,40 @@ public class ChartsResource {
 				.entity(json)
 				.build();
 	}
+	
+	/**
+	 * <pre>
+	 * GET /charts/{id} HTTP/1.1
+	 * Accept: application/json
+	 * </pre>
+	 *  
+	 * Get properties for given chart Id
+	 * @param chartId
+	 * @return
+	 */
+	@GET @Path("/{id}")
+    public Response getChart(@PathParam("id") String chartId) { 
+		log.debug("@GET {}", chartId);
+		
+		return Response.status(Response.Status.OK)
+				.type(MediaType.TEXT_PLAIN)
+				.build();
+	}	
 
-	@PATCH
-	public Response updateChart(ChartPojo json) {
+	/**
+	 * <pre>
+	 * PATCH /charts/{id} HTTP/1.1
+	 * Accept: application/json
+	 * Content-Type: application/json
+	 * </pre>
+	 *  
+	 * Update properties for given chart Id
+	 * @param chartId
+	 * @param json
+	 * @return
+	 */
+	@PATCH @Path("/{id}")
+	public Response updateChart(@PathParam("id") String chartId, ChartPojo json) {
 		log.debug("@PATCH");
 		return Response.status(Response.Status.OK)
 				.type(MediaType.APPLICATION_JSON)
@@ -85,6 +127,16 @@ public class ChartsResource {
 				.build();
 	}
 	
+	/**
+	 * <pre>
+	 * DELETE /charts/{id} HTTP/1.1
+	 * Accept: application/json
+	 * </pre>
+	 *  
+	 * Remove chart from database
+	 * @param chartId
+	 * @return
+	 */
 	@DELETE @Path("/{id}")
 	public Response deleteChart(@PathParam("id") String chartId) {
 		
@@ -93,6 +145,27 @@ public class ChartsResource {
 		log.debug("@DELETE {}", chartId);
 		return Response.status(Response.Status.OK)
 				.type(MediaType.TEXT_PLAIN)
+				.build();
+	}
+	
+	/**
+	 * <pre>
+	 * POST /charts/{id} HTTP/1.1
+	 * Accept: application/json
+	 * Content-Type: text/plain
+	 * </pre>
+	 * 
+	 * Update chart data
+	 * @param json
+	 * @return
+	 */
+	@POST @Path("/{id}")
+	@Consumes(MediaType.TEXT_PLAIN)
+    public Response updateChartDataCSV(@PathParam("id") String chartId, String csvData) {
+		log.info("@POST");
+		return Response.status(Response.Status.OK)
+				.type(MediaType.TEXT_PLAIN)
+				.entity(csvData)
 				.build();
 	}	
  
