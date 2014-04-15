@@ -18,6 +18,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.examples.httppatch.PATCH;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -147,14 +150,14 @@ public class ChartsResource {
 		//TODO: proper authorization
 		
 		ResponsePojo resp = new ResponsePojo();
-		resp.setIsoDate(new Date().toString())
+		resp.setIsoDate(new DateTime().toString(ISODateTimeFormat.dateTime()))
 			.setStatusCode(Response.Status.OK.getStatusCode())
 			.setStatusMessage("OK");		
 		
 		log.debug("@DELETE {}", chartId);
 		return Response.status(Response.Status.OK)
 				.type(MediaType.APPLICATION_JSON)
-				.entity(resp)
+				.entity(resp.toJSON())
 				.build();
 	}
 	
