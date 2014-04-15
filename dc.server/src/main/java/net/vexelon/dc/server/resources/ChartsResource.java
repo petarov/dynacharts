@@ -4,6 +4,8 @@
 */
 package net.vexelon.dc.server.resources;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -23,7 +25,9 @@ import com.google.inject.servlet.RequestScoped;
 
 import net.vexelon.dc.server.defs.Globals;
 import net.vexelon.dc.server.pojo.ChartPojo;
+import net.vexelon.dc.server.pojo.ResponsePojo;
 import net.vexelon.dc.server.services.charts.ChartsService;
+import net.vexelon.dc.utils.DateUtils;
  
 /**
  * Charts resources stub. 
@@ -142,9 +146,15 @@ public class ChartsResource {
 		
 		//TODO: proper authorization
 		
+		ResponsePojo resp = new ResponsePojo();
+		resp.setIsoDate(new Date().toString())
+			.setStatusCode(Response.Status.OK.getStatusCode())
+			.setStatusMessage("OK");		
+		
 		log.debug("@DELETE {}", chartId);
 		return Response.status(Response.Status.OK)
-				.type(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_JSON)
+				.entity(resp)
 				.build();
 	}
 	
@@ -163,6 +173,7 @@ public class ChartsResource {
 	@Consumes(MediaType.TEXT_PLAIN)
     public Response updateChartDataCSV(@PathParam("id") String chartId, String csvData) {
 		log.info("@POST");
+		
 		return Response.status(Response.Status.OK)
 				.type(MediaType.TEXT_PLAIN)
 				.entity(csvData)
