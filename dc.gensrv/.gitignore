@@ -1,0 +1,4 @@
+## ignored ##
+
+node_modules/
+*.sublime-*
