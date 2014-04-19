@@ -9,7 +9,7 @@
     "express": "~3.3.4",
     "jade": "~0.34.0",
     "d3": "^3.4.6",
-    "xmldom": "^0.1.19"
+    "jsdom": "^0.10.5"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
