@@ -9,6 +9,7 @@ var express = require('express')
 module.exports = function(app, config) {
   app.configure(function(){
     app.set('port', process.env.PORT || 3000);
+    app.set('models', path.join(config.root, '/app/models'));
     app.set('views', path.join(config.root, '/app/views'));
     app.engine('ejs', require('ejs-locals'));
     app.set('view engine', 'ejs');

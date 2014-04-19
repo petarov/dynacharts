@@ -11,16 +11,27 @@ var express = require('express')
   , fs = require('fs')
   , config = require('./config/config');
 
+
+/**
+ * Find and register Models
+ */
+// var modelsPath = __dirname + '/app/models';
+// fs.readdirSync(modelsPath).forEach(function (file) {
+//   if (file.indexOf('.js') >= 0) {
+//     require(modelsPath + '/' + file);
+//   }
+// });
+
 var app = express();
 
 require('./config/express')(app, config);
 
-app.configure('development', function(){
+app.configure('development', function() {
   app.use(express.errorHandler());
 });
 
 /**
- * Find and register controllers
+ * Find and register Controllers
  */
 var controllersPath = __dirname + '/app/controllers';
 fs.readdirSync(controllersPath).forEach(function (file) {
@@ -32,6 +43,6 @@ fs.readdirSync(controllersPath).forEach(function (file) {
 /**
  * Start server
  */
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function() {
   console.log("Dynacharts backend server listening on port " + app.get('port'));
 });
