@@ -44,7 +44,10 @@ To deploy the app run:
 Information relevant to the development process.
 
 ## Coding style
-Please refer to [Google Java Style](http://google-styleguide.googlecode.com/svn/trunk/javaguide.html).
+
+For Java development refer to [Google Java Style](http://google-styleguide.googlecode.com/svn/trunk/javaguide.html).
+
+For Node.js development refer to [Felix's Node.js Style Guide](http://nodeguide.com/style.html).
 
 # License
 Copyright (c) 2014 Vexelon.NET Services
