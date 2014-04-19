@@ -1,7 +1,8 @@
-
 /*
- * GET charts
- */
+ * Copyright (C) 2014 Vexelon.NET Services
+ * http://vexelon.net
+*/
+
 
 var d3 = require('d3');
 var jsdom = require('jsdom');

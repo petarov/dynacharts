@@ -1,5 +1,6 @@
 {
-  "node": true,
+  "node": true, // Enable globals available when code is running inside of the NodeJS runtime environment.
+  "strict": true,  // Require `use strict` pragma in every file.
   "browser": true,
   "esnext": true,
   "bitwise": true,
