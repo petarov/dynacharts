@@ -5,8 +5,8 @@ A Web platform that generates and provides real-time updates of charts and diagr
 
 # Getting Started
 
-  * `dc.server` - Java REST backend
-  * `dc.gensrv` - Node.js charts generator service
+  * `dc.server` - Node.js REST backend
+  * `dc.server.java` - Java REST backend (Deprecated)
 
 # Projects
 ## DynaCharts Server
@@ -16,7 +16,7 @@ A Web platform that generates and provides real-time updates of charts and diagr
 
 ### Usage
 
-Go to directory `dc.server`. To clean the project use:
+Go to directory `dc.server.java`. To clean the project use:
 
     mvn clean
 
@@ -31,7 +31,7 @@ To deploy the app within the Jetty application server:
 
 ### Usage
 
-Go to directory `dc.gensrv`. To install dependencies run:
+Go to directory `dc.server`. To install dependencies run:
 
     npm install
 
