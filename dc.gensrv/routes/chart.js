@@ -12,6 +12,18 @@ var htmlStub = '<html><head></head><body><div id="dataviz-container">'
     + '</div><script src="js/d3.v3.min.js"></script></body></html>';
 
 
+/**
+ * /charts/api
+ */
+exports.api = function(req, res) {
+    res.json({
+        "test_url": "http://localhost:300/charts/test"
+    });
+};
+
+/**
+ * /charts/test
+ */
 exports.test = function(req, res) {
     // pass the html stub to jsDom
     jsdom.env({ features: { QuerySelector : true }, html: htmlStub, done: function(err, window) {

@@ -3,7 +3,8 @@
  * http://vexelon.net
 */
 
-
 exports.index = function(req, res){
-    res.render('index', { title: 'Express' });
+    res.json({
+        "charts_url": "http://localhost:300/charts"
+    });
 };
