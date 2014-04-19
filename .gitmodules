@@ -1,0 +1,3 @@
+[submodule "dc.server/nvd3.master"]
+	path = dc.server/nvd3.master
+	url = https://github.com/novus/nvd3.git
