@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app"
   },
-    "author": {
+  "author": {
     "name": "Vexelon.NET Services",
     "email": "",
     "web": "http://vexelon.net"
@@ -14,7 +14,9 @@
   "dependencies": {
     "express": "~3.3.4",
     "d3": "^3.4.6",
-    "jsdom": "^0.10.5"
+    "jsdom": "^0.10.5",
+    "ejs": "^1.0.0",
+    "ejs-locals": "^1.0.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

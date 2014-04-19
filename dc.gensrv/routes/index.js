@@ -3,6 +3,9 @@
  * http://vexelon.net
 */
 
+/**
+ * GET / HTTP 1.1
+ */
 exports.index = function(req, res){
     res.json({
         "charts_url": "http://localhost:300/charts"

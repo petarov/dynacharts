@@ -8,12 +8,12 @@ var d3 = require('d3');
 var jsdom = require('jsdom');
 
 // html file skull with a container div for the d3 dataviz
-var htmlStub = '<html><head></head><body><div id="dataviz-container">'
-    + '</div><script src="js/d3.v3.min.js"></script></body></html>';
+var htmlStub = '<html><head></head><body><div id="dataviz-container"></div></body></html>';
 
 
 /**
- * /charts/api
+ * GET /charts/api HTTP 1.1
+ *
  */
 exports.api = function(req, res) {
     res.json({
@@ -22,26 +22,122 @@ exports.api = function(req, res) {
 };
 
 /**
- * /charts/test
+ * GET /charts/test HTTP 1.1
+ *
  */
 exports.test = function(req, res) {
     // pass the html stub to jsDom
-    jsdom.env({ features: { QuerySelector : true }, html: htmlStub, done: function(err, window) {
+    jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
         // process the html document, like if we were at client side
 
+        // var nv = require('./nvd3.master/nv.d3.js')(window);
         var el = window.document.querySelector('#dataviz-container');
         var body = window.document.querySelector('body');
 
-
-        newChart(el);
+        createSVG(el);
         var svgsrc = window.document.innerHTML;
-
         res.send(svgsrc);
     }});
 
 };
 
-function newChart(el) {
+exports.test2 = function(req, res) {
+    res.render('nv_chart', {
+        title: 'Generator-Express MVC',
+        body: ""
+      });
+};
+
+function createJS(nv, el) {
+
+    var testdata = [
+        {
+          key: "One",
+          y: 5
+        },
+        {
+          key: "Two",
+          y: 2
+        },
+        {
+          key: "Three",
+          y: 9
+        },
+        {
+          key: "Four",
+          y: 7
+        },
+        {
+          key: "Five",
+          y: 4
+        },
+        {
+          key: "Six",
+          y: 3
+        },
+        {
+          key: "Seven",
+          y: .5
+        }
+    ];
+
+    nv.addGraph(function() {
+        var width = 500,
+            height = 500;
+
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.key })
+            .y(function(d) { return d.y })
+            .color(d3.scale.category10().range())
+            .width(width)
+            .height(height);
+
+          d3.select(el)
+              .datum(testdata)
+            .transition().duration(1200)
+              .attr('width', width)
+              .attr('height', height)
+              .call(chart);
+
+        chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+        return chart;
+    });
+
+    nv.addGraph(function() {
+
+        var width = 500,
+            height = 500;
+
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.key })
+            //.y(function(d) { return d.value })
+            //.labelThreshold(.08)
+            //.showLabels(false)
+            .color(d3.scale.category10().range())
+            .width(width)
+            .height(height)
+            .donut(true);
+
+        chart.pie
+            .startAngle(function(d) { return d.startAngle/2 -Math.PI/2 })
+            .endAngle(function(d) { return d.endAngle/2 -Math.PI/2 });
+
+          //chart.pie.donutLabelsOutside(true).donut(true);
+
+          d3.select("#test2")
+              //.datum(historicalBarChart)
+              .datum(testdata)
+            .transition().duration(1200)
+              .attr('width', width)
+              .attr('height', height)
+              .call(chart);
+
+        return chart;
+    });
+}
+
+function createSVG(el) {
 
     var data = [
         {age: '<5', population: 2704659},
