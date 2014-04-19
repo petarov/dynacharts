@@ -24,8 +24,12 @@ module.exports = function (grunt) {
       },
       server: {
         files: [
+          'config/*.js',
           'app.js',
-          'routes/*.js'
+          'app/*.js',
+          'app/controllers/*.js',
+          'app/views/*.js',
+          'app/models/*.js'
         ],
         tasks: ['develop', 'delayed-livereload']
       },
@@ -41,8 +45,8 @@ module.exports = function (grunt) {
           livereload: reloadPort
         }
       },
-      jade: {
-        files: ['views/*.jade'],
+      ejs: {
+        files: ['app/views/*.jade'],
         options: {
           livereload: reloadPort
         }

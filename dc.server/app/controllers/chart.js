@@ -4,49 +4,53 @@
 */
 
 
-var d3 = require('d3');
-var jsdom = require('jsdom');
+var d3 = require('d3')
+  , jsdom = require('jsdom')
+  // html file skull with a container div for the d3 dataviz
+  , htmlStub = '<html><head></head><body><div id="dataviz-container"></div></body></html>';
 
-// html file skull with a container div for the d3 dataviz
-var htmlStub = '<html><head></head><body><div id="dataviz-container"></div></body></html>';
 
+module.exports = function(app) {
 
-/**
- * GET /charts/api HTTP 1.1
- *
- */
-exports.api = function(req, res) {
+  /**
+   * GET /charts/api HTTP 1.1
+   *
+   */
+  app.get('/charts', function(req, res) {
     res.json({
-        "test_url": "http://localhost:300/charts/test"
+      "test_url": "http://localhost:300/charts/test"
     });
-};
+  });
 
-/**
- * GET /charts/test HTTP 1.1
- *
- */
-exports.test = function(req, res) {
+  /**
+   * GET /charts/test HTTP 1.1
+   *
+   */
+  app.get('/charts/test', function(req, res) {
     // pass the html stub to jsDom
     jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
-        // process the html document, like if we were at client side
+      // process the html document, like if we were at client side
 
-        // var nv = require('./nvd3.master/nv.d3.js')(window);
-        var el = window.document.querySelector('#dataviz-container');
-        var body = window.document.querySelector('body');
+      // var nv = require('./nvd3.master/nv.d3.js')(window);
+      var el = window.document.querySelector('#dataviz-container');
+      var body = window.document.querySelector('body');
 
-        createSVG(el);
-        var svgsrc = window.document.innerHTML;
-        res.send(svgsrc);
+      createSVG(el);
+      var svgsrc = window.document.innerHTML;
+      res.send(svgsrc);
     }});
 
+  });
+
+  app.get('/charts/test2', function(req, res) {
+    res.render('nv_chart', {
+      title: 'Generator-Express MVC',
+      body: ""
+      });
+  });
+
 };
 
-exports.test2 = function(req, res) {
-    res.render('nv_chart', {
-        title: 'Generator-Express MVC',
-        body: ""
-      });
-};
 
 function createJS(nv, el) {
 

@@ -6,36 +6,32 @@
 "use strict";
 
 var express = require('express')
-    , routes = require('./routes')
-    , chart = require('./routes/chart')
-    , http = require('http')
-    , path = require('path');
+  , http = require('http')
+  , path = require('path')
+  , fs = require('fs')
+  , config = require('./config/config');
 
 var app = express();
 
-app.configure(function(){
-    app.set('port', process.env.PORT || 3000);
-    app.set('views', __dirname + '/views');
-    app.engine('ejs', require('ejs-locals'));
-    app.set('view engine', 'ejs');
-    app.use(express.favicon());
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(app.router);
-    app.use(express.static(path.join(__dirname, 'public')));
-    app.use(express.static(path.join(__dirname, 'nvd3.master')));
-});
+require('./config/express')(app, config);
 
 app.configure('development', function(){
-    app.use(express.errorHandler());
+  app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-app.get('/charts', chart.api);
-app.get('/charts/test', chart.test);
-app.get('/charts/test2', chart.test2);
+/**
+ * Find and register controllers
+ */
+var controllersPath = __dirname + '/app/controllers';
+fs.readdirSync(controllersPath).forEach(function (file) {
+  if (file.indexOf('.js') >= 0) {
+    require(controllersPath + '/' + file)(app);
+  }
+});
 
+/**
+ * Start server
+ */
 http.createServer(app).listen(app.get('port'), function(){
-    console.log("Dynacharts gen server listening on port " + app.get('port'));
+  console.log("Dynacharts backend server listening on port " + app.get('port'));
 });
