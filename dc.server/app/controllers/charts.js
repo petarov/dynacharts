@@ -95,7 +95,7 @@ module.exports = function(app, config) {
     });
   });
 
-  /**********************************************
+  /**************************************************************************
    * TESTING
    */
 
@@ -146,7 +146,7 @@ module.exports = function(app, config) {
   app.get('/tests/test2', function(req, res) {
     res.render('nv_chart', {
       title: 'Generator-Express MVC',
-      body: ""
+      body: "<h1>Test</h1>"
       });
   });
 
