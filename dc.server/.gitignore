@@ -2,3 +2,5 @@
 
 node_modules/
 *.sublime-*
+
+**/nv.d3.node.js
