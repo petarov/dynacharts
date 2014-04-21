@@ -9,10 +9,21 @@ var path = require('path')
   , rootPath = path.normalize(__dirname + '/..')
   , env = process.env.NODE_ENV || 'development';
 
-// common configurations
+/**
+ * Common
+ */
 var cfgBase = {
   root: rootPath,
-  port: 3000
+  port: 3000,
+
+  db: {
+      // Redis
+      redis_host: process.env.REDIS_HOST || '127.0.0.1',
+      redis_port: process.env.REDIS_PORT || '6379',
+      redis_secret: process.env.REDIS_PASSWORD || null
+
+      // Postgres (TODO)
+  },
 };
 
 var config = {
