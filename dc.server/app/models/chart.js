@@ -65,37 +65,37 @@
     return chart;
   });
 
-  nv.addGraph(function() {
+  // nv.addGraph(function() {
 
-    var width = 500
-      , height = 500;
+  //   var width = 500
+  //     , height = 500;
 
-    var chart = nv.models.pieChart()
-    .x(function(d) { return d.key })
-    //.y(function(d) { return d.value })
-    //.labelThreshold(.08)
-    //.showLabels(false)
-    .color(d3.scale.category10().range())
-    .width(width)
-    .height(height)
-    .donut(true);
+  //   var chart = nv.models.pieChart()
+  //   .x(function(d) { return d.key })
+  //   //.y(function(d) { return d.value })
+  //   //.labelThreshold(.08)
+  //   //.showLabels(false)
+  //   .color(d3.scale.category10().range())
+  //   .width(width)
+  //   .height(height)
+  //   .donut(true);
 
-    chart.pie
-    .startAngle(function(d) { return d.startAngle/2 -Math.PI/2 })
-    .endAngle(function(d) { return d.endAngle/2 -Math.PI/2 });
+  //   chart.pie
+  //   .startAngle(function(d) { return d.startAngle/2 -Math.PI/2 })
+  //   .endAngle(function(d) { return d.endAngle/2 -Math.PI/2 });
 
-    //chart.pie.donutLabelsOutside(true).donut(true);
+  //   //chart.pie.donutLabelsOutside(true).donut(true);
 
-    d3.select("#test2")
-    //.datum(historicalBarChart)
-    .datum(testdata)
-    .transition().duration(1200)
-    .attr('width', width)
-    .attr('height', height)
-    .call(chart);
+  //   d3.select(el)
+  //   //.datum(historicalBarChart)
+  //   .datum(testdata)
+  //   .transition().duration(1200)
+  //   .attr('width', width)
+  //   .attr('height', height)
+  //   .call(chart);
 
-    return chart;
-  });
+  //   return chart;
+  // });
 };
 
 module.exports.createSVG = function(el) {

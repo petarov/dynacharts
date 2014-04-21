@@ -109,12 +109,31 @@ module.exports = function(app, config) {
     // pass the html stub to jsDom
     jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
       // process the html document, like if we were at client side
-
-      // var nv = require('./nvd3.master/nv.d3.js')(window);
       var el = window.document.querySelector('#dataviz-container');
       var body = window.document.querySelector('body');
 
       Chart.createSVG(el);
+      var svgsrc = window.document.innerHTML;
+      res.send(svgsrc);
+    }});
+
+  });
+
+  app.get('/tests/test3', function(req, res) {
+    // html file skull with a container div for the d3 dataviz
+    var htmlStub = '<html><head></head><body><svg id="dataviz-container"></svg></body></html>';
+
+    // pass the html stub to jsDom
+    jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
+      // process the html document, like if we were at client side
+
+      // var nv = require('./nvd3.master/nv.d3.js')(window);
+      require(config.root + '/nvd3.master/nv.d3.node.js')(window);
+      var nv = window.nv;
+      var el = window.document.querySelector('#dataviz-container');
+      var body = window.document.querySelector('body');
+
+      Chart.createJS(nv, el);
       var svgsrc = window.document.innerHTML;
       res.send(svgsrc);
     }});
