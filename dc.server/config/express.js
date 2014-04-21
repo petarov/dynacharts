@@ -11,8 +11,10 @@ module.exports = function(app, config) {
     app.set('port', process.env.PORT || 3000);
     app.set('models', path.join(config.root, '/app/models'));
     app.set('views', path.join(config.root, '/app/views'));
+
     app.engine('ejs', require('ejs-locals'));
     app.set('view engine', 'ejs');
+
     app.use(express.favicon());
     app.use(express.compress());
     app.use(express.logger('dev'));

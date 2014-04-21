@@ -36,7 +36,7 @@ app.configure('development', function() {
 var controllersPath = __dirname + '/app/controllers';
 fs.readdirSync(controllersPath).forEach(function (file) {
   if (file.indexOf('.js') >= 0) {
-    require(controllersPath + '/' + file)(app);
+    require(controllersPath + '/' + file)(app, config);
   }
 });
 

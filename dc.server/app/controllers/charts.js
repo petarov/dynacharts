@@ -3,11 +3,9 @@
  * http://vexelon.net
 */
 
-var jsdom = require('jsdom')
-  // html file skull with a container div for the d3 dataviz
-  , htmlStub = '<html><head></head><body><div id="dataviz-container"></div></body></html>';
+var jsdom = require('jsdom');
 
-module.exports = function(app) {
+module.exports = function(app, config) {
 
   var Chart = require(app.get('models') + '/chart');
 
@@ -104,7 +102,10 @@ module.exports = function(app) {
   /**
    * GET /charts/test HTTP 1.1
    */
-  app.get('/charts/test', function(req, res) {
+  app.get('/tests/test', function(req, res) {
+    // html file skull with a container div for the d3 dataviz
+    var htmlStub = '<html><head></head><body><div id="dataviz-container"></div></body></html>';
+
     // pass the html stub to jsDom
     jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
       // process the html document, like if we were at client side
@@ -123,7 +124,7 @@ module.exports = function(app) {
   /**
    * GET /charts/test2 HTTP 1.1
    */
-  app.get('/charts/test2', function(req, res) {
+  app.get('/tests/test2', function(req, res) {
     res.render('nv_chart', {
       title: 'Generator-Express MVC',
       body: ""

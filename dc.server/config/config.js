@@ -4,36 +4,41 @@
 */
 
 var path = require('path')
-    , rootPath = path.normalize(__dirname + '/..')
-    , env = process.env.NODE_ENV || 'development';
+  , _ = require('underscore')
+  , rootPath = path.normalize(__dirname + '/..')
+  , env = process.env.NODE_ENV || 'development';
+
+// common configurations
+var cfgBase = {
+  root: rootPath,
+  port: 3000
+};
 
 var config = {
-  development: {
-    root: rootPath,
+  development: {},
+  test: {},
+  production: {}
+};
+
+_.extend(config['development'], _.clone(cfgBase), {
     app: {
       name: 'dc.server-dev'
     },
-    port: 3000,
     db: 'mongodb://localhost/<%= _.slugify(appname) %>-development'
-  },
+});
 
-  test: {
-    root: rootPath,
+_.extend(config['test'], _.clone(cfgBase), {
     app: {
       name: 'dc.server-test'
     },
-    port: 3000,
     db: 'mongodb://localhost/<%= _.slugify(appname) %>-test'
-  },
+});
 
-  production: {
-    root: rootPath,
+_.extend(config['production'], _.clone(cfgBase), {
     app: {
       name: 'dc.server'
     },
-    port: 3000,
     db: 'mongodb://localhost/<%= _.slugify(appname) %>-production'
-  }
-};
+});
 
 module.exports = config[env];
