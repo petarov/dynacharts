@@ -2,6 +2,7 @@
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
  */
+"use strict";
 
  var d3 = require('d3')
    , jsdom = require('jsdom')
