@@ -12,13 +12,94 @@ module.exports = function(app) {
   var Chart = require(app.get('models') + '/chart');
 
   /**
-   * GET /charts/api HTTP 1.1
+   * GET /charts HTTP/1.1
+   * Accept: application/json
+   *
+   * Get a list of available resources
    */
   app.get('/charts', function(req, res) {
     res.json({
       "test_url": "http://localhost:300/charts/test"
     });
   });
+
+  /**
+   * POST /charts HTTP/1.1
+   * Accept: application/json
+   * Content-Type: application/json
+   *
+   * Create a new chart
+   * @param json
+   */
+  app.post('/charts', function(req, res) {
+    console.log('POST');
+    res.json({
+      "test_url": "http://localhost:300/charts/test"
+    });
+  });
+
+  /**
+   * GET /charts/{id} HTTP/1.1
+   * Accept: application/json
+   *
+   * Get properties for given chart Id
+   * @param chartId
+   */
+  app.get('/charts/:id', function(req, res) {
+    console.log('GET ' + req.params.id);
+    res.json({
+      "test_url": "http://localhost:300/charts/test"
+    });
+  });
+
+  /**
+   * PATCH /charts/{id} HTTP/1.1
+   * Accept: application/json
+   * Content-Type: application/json
+   *
+   * Update properties for given chart Id
+   * @param chartId
+   * @param json
+   */
+  app.patch('/charts/:id', function(req, res) {
+    console.log('PATCH ' + req.params.id);
+    res.json({
+      "test_url": "http://localhost:300/charts/test"
+    });
+  });
+
+  /**
+   * DELETE /charts/{id} HTTP/1.1
+   * Accept: application/json
+   *
+   * Remove chart from database
+   * @param chartId
+   */
+  app.del('/charts/:id', function(req, res) {
+    console.log('DELETE ' + req.params.id);
+    res.json({
+      "test_url": "http://localhost:300/charts/test"
+    });
+  });
+
+  /**
+   * POST /charts/{id} HTTP/1.1
+   * Accept: application/json
+   * Content-Type: text/plain
+   *
+   * Update chart data
+   * @param json
+   */
+  app.post('/charts/:id', function(req, res) {
+    console.log('POST ' + req.params.id);
+    res.json({
+      "test_url": "http://localhost:300/charts/test"
+    });
+  });
+
+  /**********************************************
+   * TESTING
+   */
 
   /**
    * GET /charts/test HTTP 1.1
