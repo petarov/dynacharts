@@ -3,48 +3,118 @@
  * http://vexelon.net
  */
 
- var d3 = require('d3');
+ var d3 = require('d3')
+   , jsdom = require('jsdom')
+   , Canvas = require('canvas')
+   , Image = Canvas.Image
+   , XMLSerializer = require('xmldom').XMLSerializer;
 
- module.exports = function() {
-  //TODO
- };
+module.exports = function(app) {
+  return {
+    /**
+     * Create new chart
+     */
+    create: function(spec, options, callback) {
+      callback = callback ? callback : options;
 
- module.exports.createJS = function(nv, el) {
+      // html file skull with a container div for the d3 dataviz
+      var htmlStub = '<html><head></head><body><div id="container"></div></body></html>';
+
+      // pass the html stub to jsDom
+      jsdom.env({features: {QuerySelector: false}, html: htmlStub, done: function(err, window) {
+        // process the html document, like if we were at client side
+
+        // var el = window.document.querySelector('#container');
+        var el = window.document.body.lastChild;
+        createSVG(el);
+        var svgsrc = el.innerHTML;
+
+        if (options.png) {
+          // convert to PNG
+          importSVG(svgsrc, function(err, data) {
+            callback(err, data);
+          });
+        } else {
+          callback(null, svgsrc);
+        }
+
+      }});
+
+    },
+
+    get: function(id, callback) {
+
+    }
+
+  }
+};
+
+function importSVG(sourceSVG, cb) {
+  // https://developer.mozilla.org/en/XMLSerializer
+  var svg_xml = new XMLSerializer().serializeToString(sourceSVG);
+
+  //The serialized SVG
+  // console.log(svg_xml)
+
+  //Need to deal with weird serializations problem in webkit
+  // if($.browser.webkit) {
+  //     //WebKit
+  //     svg_xml = svg_xml.replace(/ xlink/g, ' xmlns:xlink')
+  //     svg_xml = svg_xml.replace(/ href/g, ' xlink:href')
+  // }
+
+  var canvas = new Canvas(1288, 1288);
+  var ctx = canvas.getContext('2d');
+
+  var img = new Image;
+  img.onload = function() {
+      ctx.drawImage(img, 0, 0);
+      cb(null, canvas.toBuffer());
+  };
+  img.onerror = function(err){
+    console.error(err);
+    cb(err, null);
+  };
+  var data = new Buffer(sourceSVG).toString('base64');
+  img.src = "data:image/svg+xml;base64," + data;
+}
+
+function createJS(nv, el) {
 
   var testdata = [
-    {
-      key: "One",
-      y: 5
-    },
-    {
-      key: "Two",
-      y: 2
-    },
-    {
-      key: "Three",
-      y: 9
-    },
-    {
-      key: "Four",
-      y: 7
-    },
-    {
-      key: "Five",
-      y: 4
-    },
-    {
-      key: "Six",
-      y: 3
-    },
-    {
-      key: "Seven",
-      y: .5
-    }
+  {
+    key: "One",
+    y: 5
+  },
+  {
+    key: "Two",
+    y: 2
+  },
+  {
+    key: "Three",
+    y: 9
+  },
+  {
+    key: "Four",
+    y: 7
+  },
+  {
+    key: "Five",
+    y: 4
+  },
+  {
+    key: "Six",
+    y: 3
+  },
+  {
+    key: "Seven",
+    y: .5
+  }
   ];
 
   nv.addGraph(function() {
     var width = 500
-      , height = 500;
+    , height = 500;
 
     var chart = nv.models.pieChart()
     .x(function(d) { return d.key })
@@ -98,7 +168,7 @@
   // });
 };
 
-module.exports.createSVG = function(el) {
+function createSVG(el) {
 
   var data = [
     {age: '<5', population: 2704659},
@@ -111,8 +181,8 @@ module.exports.createSVG = function(el) {
   ];
 
   var width = 960
-    , height = 500
-    , radius = Math.min(width, height) / 2;
+  , height = 500
+  , radius = Math.min(width, height) / 2;
 
   var color = d3.scale.ordinal()
   .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);

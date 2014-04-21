@@ -3,11 +3,9 @@
  * http://vexelon.net
  */
 
-var jsdom = require('jsdom');
-
 module.exports = function(app, config) {
 
-  var Chart = require(app.get('models') + '/chart');
+  var Chart = require(app.get('models') + '/chart')(app);
 
   /**
    * GET /charts HTTP/1.1
@@ -31,8 +29,13 @@ module.exports = function(app, config) {
    */
   app.post('/charts', function(req, res) {
     console.log('POST');
-    res.json({
-      "test_url": "http://localhost:300/charts/test"
+
+    Chart.create({png: true}, function(err, chart) {
+
+      res.json({
+        "svg": chart
+      });
+
     });
   });
 
@@ -103,47 +106,49 @@ module.exports = function(app, config) {
    * GET /charts/test HTTP 1.1
    */
   app.get('/tests/test', function(req, res) {
-    // html file skull with a container div for the d3 dataviz
-    var htmlStub = '<html><head></head><body><div id="dataviz-container"></div></body></html>';
+    Chart.create(null, function(err, chart) {
 
-    // pass the html stub to jsDom
-    jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
-      // process the html document, like if we were at client side
-      var el = window.document.querySelector('#dataviz-container');
-      var body = window.document.querySelector('body');
+      res.send(chart);
 
-      Chart.createSVG(el);
-      var svgsrc = window.document.innerHTML;
-      res.send(svgsrc);
-    }});
-
+    });
   });
 
-  app.get('/tests/test3', function(req, res) {
-    // html file skull with a container div for the d3 dataviz
-    var htmlStub = '<html><head></head><body><svg id="dataviz-container"></svg></body></html>';
+  /**
+   * GET /charts/test HTTP 1.1
+   */
+  app.get('/tests/test2', function(req, res) {
+    Chart.create(null, {png: true}, function(err, chart) {
+      res.set('Content-Type', 'image/png');
+      res.send(chart);
 
-    // pass the html stub to jsDom
-    jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
-      // process the html document, like if we were at client side
-
-      // var nv = require('./nvd3.master/nv.d3.js')(window);
-      require(config.root + '/nvd3.master/nv.d3.node.js')(window);
-      var nv = window.nv;
-      var el = window.document.querySelector('#dataviz-container');
-      var body = window.document.querySelector('body');
-
-      Chart.createJS(nv, el);
-      var svgsrc = window.document.innerHTML;
-      res.send(svgsrc);
-    }});
-
+    });
   });
+
+  // app.get('/tests/test3', function(req, res) {
+  //   // html file skull with a container div for the d3 dataviz
+  //   var htmlStub = '<html><head></head><body><svg id="dataviz-container"></svg></body></html>';
+
+  //   // pass the html stub to jsDom
+  //   jsdom.env({ features: { QuerySelector: true }, html: htmlStub, done: function(err, window) {
+  //     // process the html document, like if we were at client side
+
+  //     // var nv = require('./nvd3.master/nv.d3.js')(window);
+  //     require(config.root + '/nvd3.master/nv.d3.node.js')(window);
+  //     var nv = window.nv;
+  //     var el = window.document.querySelector('#dataviz-container');
+  //     var body = window.document.querySelector('body');
+
+  //     Chart.createJS(nv, el);
+  //     var svgsrc = window.document.innerHTML;
+  //     res.send(svgsrc);
+  //   }});
+
+  // });
 
   /**
    * GET /charts/test2 HTTP 1.1
    */
-  app.get('/tests/test2', function(req, res) {
+  app.get('/tests/test3', function(req, res) {
     res.render('nv_chart', {
       title: 'Generator-Express MVC',
       body: "<h1>Test</h1>"

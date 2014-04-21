@@ -34,7 +34,7 @@ app.configure('development', function() {
  * Find and register Controllers
  */
 var controllersPath = __dirname + '/app/controllers';
-fs.readdirSync(controllersPath).forEach(function (file) {
+fs.readdirSync(controllersPath).forEach(function(file) {
   if (file.indexOf('.js') >= 0) {
     require(controllersPath + '/' + file)(app, config);
   }
