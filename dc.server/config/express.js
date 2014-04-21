@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
-*/
+ */
 
 var express = require('express')
   , path = require('path');

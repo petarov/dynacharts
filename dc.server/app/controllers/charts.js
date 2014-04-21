@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2014 Vexelon.NET Services
  * http://vexelon.net
-*/
+ */
 
 var jsdom = require('jsdom');
 
