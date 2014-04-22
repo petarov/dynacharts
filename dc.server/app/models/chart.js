@@ -4,9 +4,11 @@
  */
 "use strict";
 
+var ChartsGen = require('../gen/chartsGen');
+
 module.exports = function(config) {
 
-  var ChartGen = require(config.src + '/gen/chartsGen')(config);
+  var chartsGenerator = ChartsGen(config);
 
   return {
     /**
@@ -18,7 +20,7 @@ module.exports = function(config) {
       //TODO: check permissions
       //TODO: validate spec
 
-      ChartGen.newPieChart(spec, function(err, svgData) {
+      chartsGenerator.newPieChart(spec, function(err, svgData) {
         callback()
 
 

@@ -8,7 +8,7 @@ var path = require('path');
 
 module.exports = function(app, config) {
 
-  var pjson = require(path.join(config.root, 'package.json'));
+  var pkg = require(path.join(config.root, 'package.json'));
 
   /**
    * GET / HTTP/1.1
@@ -18,7 +18,7 @@ module.exports = function(app, config) {
    */
   app.get('/', function(req, res) {
     res.json({
-      "charts_url": "http://localhost:300/charts"
+      "charts_url": config.url + "/charts"
     });
   });
 
@@ -31,7 +31,7 @@ module.exports = function(app, config) {
   app.get('/version', function(req, res) {
     res.json({
       "name": config.app.name,
-      "version": pjson.version
+      "version": pkg.version
     });
   });
 

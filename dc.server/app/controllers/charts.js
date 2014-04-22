@@ -4,9 +4,13 @@
  */
 "use strict";
 
+var Log = require('../utils/logger');
+var Chart = require('../models/chart');
+
 module.exports = function(app, config) {
 
-  var Chart = require(config.src + '/models/chart')(config);
+  var log = Log(config);
+  var chartModel = Chart(config);
 
   /**
    * GET /charts HTTP/1.1
@@ -16,7 +20,8 @@ module.exports = function(app, config) {
    */
   app.get('/charts', function(req, res) {
     res.json({
-      "test_url": "http://localhost:300/charts/test"
+      "charts_url": config.url + '/charts',
+      "chart_url": config.url + '/charts/{id}'
     });
   });
 
@@ -29,12 +34,12 @@ module.exports = function(app, config) {
    * @param json
    */
   app.post('/charts', function(req, res) {
-    console.log('POST');
+    log.verbose('POST');
 
-    if (!isAccepts(req, res))
+    if (!validateRequest(req, res))
       return;
 
-    Chart.create(req.body, {png: false}, function(err, chart) {
+    chartModel.create(req.body, {png: false}, function(err, chart) {
 
       res.json({
         "svg": chart
@@ -110,7 +115,7 @@ module.exports = function(app, config) {
    * GET /charts/test HTTP 1.1
    */
   app.get('/tests/test', function(req, res) {
-    Chart.create(null, function(err, chart) {
+    chartModel.create(null, function(err, chart) {
 
       res.send(chart);
 
@@ -121,7 +126,7 @@ module.exports = function(app, config) {
    * GET /charts/test HTTP 1.1
    */
   app.get('/tests/test2', function(req, res) {
-    Chart.create(null, {png: true}, function(err, chart) {
+    chartModel.create(null, {png: true}, function(err, chart) {
       res.set('Content-Type', 'image/png');
       res.send(chart);
 
@@ -161,7 +166,7 @@ module.exports = function(app, config) {
 
 };
 
-function isAccepts(req, res) {
+function validateRequest(req, res) {
   if (!req.is('application/json')) {
     res.status(406).send(newError(406, '406 Not Acceptable'));
     return false;

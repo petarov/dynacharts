@@ -8,7 +8,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
-  , config = require('./config/config');
+  , config = require('./config/config')
+  , log = require('./app/utils/logger')(config);
 
 
 /**
@@ -43,5 +44,5 @@ fs.readdirSync(controllersPath).forEach(function(file) {
  * Start server
  */
 http.createServer(app).listen(app.get('port'), function() {
-  console.log("Dynacharts backend server listening on port " + app.get('port'));
+  log.info("Dynacharts backend server listening on port " + app.get('port'));
 });

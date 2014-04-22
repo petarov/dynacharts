@@ -7,16 +7,17 @@
 var path = require('path')
   , _ = require('underscore')
   , rootPath = path.normalize(__dirname + '/..')
-  , srcPath = path.normalize(__dirname + '/..') + '/app'
-  , env = process.env.NODE_ENV || 'development';
+  , env = process.env.NODE_ENV || 'development'
+  , port = process.env.NODE_PORT || 3000;
 
 /**
  * Common
  */
 var cfgBase = {
   root: rootPath,
-  src: srcPath,
-  port: 3000,
+  url: 'http://localhost:' + port,
+  port: port,
+  verboseLogging: true,
 
   db: {
       // Redis
@@ -56,6 +57,8 @@ _.extend(config['test'], _.clone(cfgBase), {
  * Production deployment
  */
 _.extend(config['production'], _.clone(cfgBase), {
+    verboseLogging: false,
+    url: 'http://example.org',
     app: {
       name: 'dc.server'
     },
