@@ -20,12 +20,7 @@ module.exports = function(config) {
       //TODO: check permissions
       //TODO: validate spec
 
-      chartsGenerator.newPieChart(spec, function(err, svgData) {
-        callback()
-
-
-      });
-
+      chartsGenerator.newPieChart(spec, callback);
     },
 
     get: function(id, callback) {

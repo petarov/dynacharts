@@ -34,17 +34,11 @@ module.exports = function(app, config) {
    * @param json
    */
   app.post('/charts', function(req, res) {
-    log.verbose('POST');
-
     if (!validateRequest(req, res))
       return;
 
     chartModel.create(req.body, {png: false}, function(err, chart) {
-
-      res.json({
-        "svg": chart
-      });
-
+      res.json(chart);
     });
   });
 
