@@ -1,0 +1,18 @@
+<svg width=\"960\" height=\"500\"><g transform=\"translate(480,250)\"><g class=\"arc\"><path d=\"M1.4695276245868527e-14,-240A240,240 0 
+0,1 107.0492887034484,-214.803281604555L0,0Z\" style=\"fill: #98abc5;\"></path><text 
+transform=\"translate(27.493663849391726,-116.80795541458916)\" dy=\".35em\" style=\"text-anchor: middle;\">&lt;5</text></g><g 
+class=\"arc\"><path d=\"M107.0492887034484,-214.803281604555A240,240 0 0,1 226.32103905324743,-79.86731047092076L0,0Z\" style=\"fill: 
+#8a89a6;\"></path><text transform=\"translate(89.91089051610481,-79.47346580212174)\" dy=\".35em\" style=\"text-anchor: 
+middle;\">5-13</text></g><g class=\"arc\"><path d=\"M226.32103905324743,-79.86731047092076A240,240 0 0,1 
+239.89217619670538,7.193316315084522L0,0Z\" style=\"fill: #7b6888;\"></path><text 
+transform=\"translate(118.56810142542317,-18.48256812162655)\" dy=\".35em\" style=\"text-anchor: middle;\">14-17</text></g><g 
+class=\"arc\"><path d=\"M239.89217619670538,7.193316315084522A240,240 0 0,1 185.29089011249533,152.53617945038215L0,0Z\" style=\"fill: 
+#6b486b;\"></path><text transform=\"translate(112.33465286267969,42.201016175220815)\" dy=\".35em\" style=\"text-anchor: 
+middle;\">18-24</text></g><g class=\"arc\"><path d=\"M185.29089011249533,152.53617945038215A240,240 0 0,1 
+-239.7935922865823,9.951537484044003L0,0Z\" style=\"fill: #a05d56;\"></path><text 
+transform=\"translate(-38.16160101213167,113.77034854561566)\" dy=\".35em\" style=\"text-anchor: middle;\">25-44</text></g><g 
+class=\"arc\"><path d=\"M-239.7935922865823,9.951537484044003A240,240 0 0,1 -25.080788568417415,-238.68588991556737L0,0Z\" style=\"fill: 
+#d0743c;\"></path><text transform=\"translate(-90.82228799185823,-78.43030029219551)\" dy=\".35em\" style=\"text-anchor: 
+middle;\">45-64</text></g><g class=\"arc\"><path d=\"M-25.080788568417415,-238.68588991556737A240,240 0 0,1 
+-2.5724864946563564e-13,-240L0,0Z\" style=\"fill: #ff8c00;\"></path><text 
+transform=\"translate(-6.278797857311532,-119.83562365785485)\" dy=\".35em\" style=\"text-anchor: middle;\">≥65</text></g></g></svg>

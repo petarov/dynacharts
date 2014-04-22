@@ -109,10 +109,8 @@ module.exports = function(app, config) {
    * GET /charts/test HTTP 1.1
    */
   app.get('/tests/test', function(req, res) {
-    chartModel.create(null, function(err, chart) {
-
-      res.send(chart);
-
+    chartModel.create(req.body, {png: false}, function(err, chart) {
+      res.send(chart.data);
     });
   });
 

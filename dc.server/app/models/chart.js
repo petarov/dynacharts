@@ -7,6 +7,8 @@
 var uuid = require('node-uuid')
   , ChartsGen = require('../gen/chartsGen');
 
+
+
 module.exports = function(config) {
 
   var chartsGenerator = ChartsGen(config);
@@ -28,7 +30,7 @@ module.exports = function(config) {
 
         var chart = {
           id: uuid.v4(),
-          data: svgData
+          data: svg
         };
 
         callback(err, chart);

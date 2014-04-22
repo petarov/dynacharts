@@ -28,7 +28,7 @@ module.exports = function(config) {
           return;
         }
 
-        createPieChart(spec.data, renderTo);
+        createPieChart(spec, renderTo);
         var svgData = renderTo.innerHTML;
         cb(null, svgData);
       });
@@ -87,23 +87,25 @@ function importSVG(sourceSVG, cb) {
   img.src = "data:image/svg+xml;base64," + data;
 }
 
-function createPieChart(data, renderTo) {
-  var data = [
-    {age: '<5', population: 2704659},
-    {age: '5-13', population: 4499890},
-    {age: '14-17', population: 2159981},
-    {age: '18-24', population: 3853788},
-    {age: '25-44', population: 14106543},
-    {age: '45-64', population: 8819342},
-    {age: '≥65', population: 612463}
-  ];
+function createPieChart(spec, renderTo) {
+  // var data = [
+  //   {age: '<5', population: 2704659},
+  //   {age: '5-13', population: 4499890},
+  //   {age: '14-17', population: 2159981},
+  //   {age: '18-24', population: 3853788},
+  //   {age: '25-44', population: 14106543},
+  //   {age: '45-64', population: 8819342},
+  //   {age: '≥65', population: 612463}
+  // ];
 
-  var width = 960
-  , height = 500
+  var data = spec.data.payload;
+
+  var width = spec.size.width
+  , height = spec.size.height
   , radius = Math.min(width, height) / 2;
 
   var color = d3.scale.ordinal()
-  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+  .range(spec.colors);
 
   var arc = d3.svg.arc()
   .outerRadius(radius - 10)
