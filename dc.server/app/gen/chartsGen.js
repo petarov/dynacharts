@@ -88,16 +88,6 @@ function importSVG(sourceSVG, cb) {
 }
 
 function createPieChart(spec, renderTo) {
-  // var data = [
-  //   {age: '<5', population: 2704659},
-  //   {age: '5-13', population: 4499890},
-  //   {age: '14-17', population: 2159981},
-  //   {age: '18-24', population: 3853788},
-  //   {age: '25-44', population: 14106543},
-  //   {age: '45-64', population: 8819342},
-  //   {age: '≥65', population: 612463}
-  // ];
-
   var data = spec.data.payload;
 
   var width = spec.size.width
@@ -105,7 +95,7 @@ function createPieChart(spec, renderTo) {
   , radius = Math.min(width, height) / 2;
 
   var color = d3.scale.ordinal()
-  .range(spec.colors);
+  .range(spec.styles.colors);
 
   var arc = d3.svg.arc()
   .outerRadius(radius - 10)

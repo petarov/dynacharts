@@ -27,5 +27,14 @@ module.exports = function(app, config) {
     // });
     app.use(express.static(path.join(config.root, 'public')));
     app.use(express.static(path.join(config.root, 'nvd3.master')));
+
+    // app.use(function(req, res, next){
+    //   if (!req.is('application/json')) {
+    //     res.status(406).send('406 Not Acceptable');
+    //     return;
+    //   }
+    //   next();
+    // });
+
   });
 };

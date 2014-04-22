@@ -38,6 +38,10 @@ module.exports = function(app, config) {
       return;
 
     chartModel.create(req.body, {png: false}, function(err, chart) {
+      if (err) {
+        sendSrvError(res, err);
+        return;
+      }
       res.json(chart);
     });
   });
@@ -173,4 +177,8 @@ function newError(code, msg) {
     "msg": msg,
     "datetime": date.toISOString()
   };
+}
+
+function sendSrvError(res, msg) {
+  res.status(500).send(newError(500, msg));
 }
