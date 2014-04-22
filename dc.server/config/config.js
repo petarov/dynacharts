@@ -7,6 +7,7 @@
 var path = require('path')
   , _ = require('underscore')
   , rootPath = path.normalize(__dirname + '/..')
+  , srcPath = path.normalize(__dirname + '/..') + '/app'
   , env = process.env.NODE_ENV || 'development';
 
 /**
@@ -14,6 +15,7 @@ var path = require('path')
  */
 var cfgBase = {
   root: rootPath,
+  src: srcPath,
   port: 3000,
 
   db: {

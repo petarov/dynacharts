@@ -19,7 +19,7 @@ module.exports = function(app, config) {
     app.use(express.favicon());
     app.use(express.compress());
     app.use(express.logger('dev'));
-    app.use(express.bodyParser());
+    app.use(express.bodyParser({ strict: true }));
     app.use(express.methodOverride());
     app.use(app.router);
     // app.use(function (req, res) {

@@ -6,7 +6,7 @@
 
 module.exports = function(app, config) {
 
-  var Chart = require(app.get('models') + '/chart')(app);
+  var Chart = require(config.src + '/models/chart')(config);
 
   /**
    * GET /charts HTTP/1.1
@@ -31,7 +31,10 @@ module.exports = function(app, config) {
   app.post('/charts', function(req, res) {
     console.log('POST');
 
-    Chart.create({png: true}, function(err, chart) {
+    if (!isAccepts(req, res))
+      return;
+
+    Chart.create(req.body, {png: false}, function(err, chart) {
 
       res.json({
         "svg": chart
@@ -157,3 +160,20 @@ module.exports = function(app, config) {
   });
 
 };
+
+function isAccepts(req, res) {
+  if (!req.is('application/json')) {
+    res.status(406).send(newError(406, '406 Not Acceptable'));
+    return false;
+  }
+  return true;
+}
+
+function newError(code, msg) {
+  var date = new Date();
+  return {
+    "status": code,
+    "msg": msg,
+    "datetime": date.toISOString()
+  };
+}
