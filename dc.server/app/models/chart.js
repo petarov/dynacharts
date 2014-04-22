@@ -4,27 +4,48 @@
  */
 "use strict";
 
-var ChartsGen = require('../gen/chartsGen');
+var uuid = require('node-uuid')
+  , ChartsGen = require('../gen/chartsGen');
 
 module.exports = function(config) {
 
   var chartsGenerator = ChartsGen(config);
 
   return {
-    /**
-     * Create new chart
-     */
+
     create: function(spec, options, callback) {
       callback = callback ? callback : options;
 
       //TODO: check permissions
       //TODO: validate spec
 
-      chartsGenerator.newPieChart(spec, callback);
+      chartsGenerator.newPieChart(spec, function(err, svg) {
+        // error handler
+        if (err) {
+          cb(err);
+          return;
+        }
+
+        var chart = {
+          id: uuid.v4(),
+          data: svgData
+        };
+
+        callback(err, chart);
+      });
     },
 
     get: function(id, callback) {
+      //TODO: check permissions
+    },
 
+    update: function(id, spec, callback) {
+      //TODO: check permissions
+      //TODO: validate spec
+    },
+
+    del: function(id, callback) {
+      //TODO: check permissions
     }
 
   }

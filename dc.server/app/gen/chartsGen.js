@@ -30,12 +30,7 @@ module.exports = function(config) {
 
         createPieChart(spec.data, renderTo);
         var svgData = renderTo.innerHTML;
-        var chart = {
-          id: 1,
-          data: svgData
-        };
-
-        cb(null, chart);
+        cb(null, svgData);
       });
     }
 
