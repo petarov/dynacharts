@@ -54,7 +54,6 @@ module.exports = function(app, config) {
    * @param chartId
    */
   app.get('/charts/:id', function(req, res) {
-    console.log('GET ' + req.params.id);
     res.json({
       "test_url": "http://localhost:300/charts/test"
     });
@@ -70,7 +69,9 @@ module.exports = function(app, config) {
    * @param json
    */
   app.patch('/charts/:id', function(req, res) {
-    console.log('PATCH ' + req.params.id);
+    if (!validateRequest(req, res))
+      return;
+
     res.json({
       "test_url": "http://localhost:300/charts/test"
     });
@@ -84,7 +85,6 @@ module.exports = function(app, config) {
    * @param chartId
    */
   app.del('/charts/:id', function(req, res) {
-    console.log('DELETE ' + req.params.id);
     res.json({
       "test_url": "http://localhost:300/charts/test"
     });
@@ -99,7 +99,9 @@ module.exports = function(app, config) {
    * @param json
    */
   app.post('/charts/:id', function(req, res) {
-    console.log('POST ' + req.params.id);
+    if (!validateRequest(req, res))
+      return;
+
     res.json({
       "test_url": "http://localhost:300/charts/test"
     });
