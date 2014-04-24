@@ -54,8 +54,12 @@ module.exports = function(app, config) {
    * @param chartId
    */
   app.get('/charts/:id', function(req, res) {
-    res.json({
-      "test_url": "http://localhost:300/charts/test"
+    chartModel.get(req.params.id, function(err, chart) {
+      if (err) {
+        sendSrvError(res, err);
+        return;
+      }
+      res.json(chart);
     });
   });
 
@@ -72,8 +76,12 @@ module.exports = function(app, config) {
     if (!validateRequest(req, res))
       return;
 
-    res.json({
-      "test_url": "http://localhost:300/charts/test"
+    chartModel.update(req.params.id, req.body, function(err, chart) {
+      if (err) {
+        sendSrvError(res, err);
+        return;
+      }
+      res.json(chart);
     });
   });
 
@@ -85,8 +93,12 @@ module.exports = function(app, config) {
    * @param chartId
    */
   app.del('/charts/:id', function(req, res) {
-    res.json({
-      "test_url": "http://localhost:300/charts/test"
+    chartModel.del(req.params.id, function(err, chart) {
+      if (err) {
+        sendSrvError(res, err);
+        return;
+      }
+      res.json(chart);
     });
   });
 
@@ -98,14 +110,18 @@ module.exports = function(app, config) {
    * Update chart data
    * @param json
    */
-  app.post('/charts/:id', function(req, res) {
-    if (!validateRequest(req, res))
-      return;
+  // app.post('/charts/:id', function(req, res) {
+  //   if (!validateRequest(req, res))
+  //     return;
 
-    res.json({
-      "test_url": "http://localhost:300/charts/test"
-    });
-  });
+  //   chartModel.data(req.params.id, function(err, chart) {
+  //     if (err) {
+  //       sendSrvError(res, err);
+  //       return;
+  //     }
+  //     res.json(chart);
+  //   });
+  // });
 
   /**************************************************************************
    * TESTING
