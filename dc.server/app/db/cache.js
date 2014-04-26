@@ -6,10 +6,11 @@
 
 function RedisCache(config) {
   this.config = config;
-  this.client = undefined; // explicit
+  this.client = null; // explicit
 }
 
-RedisCache.prototype.open = function(options) {
+RedisCache.prototype.open = function(options, cbErr) {
+  options = options || {};
   var config = this.config;
 
   this.client = require("redis").createClient(
@@ -18,9 +19,7 @@ RedisCache.prototype.open = function(options) {
 
   config.db.redis_secret && this.client.auth(config.db.redis_secret);
 
-  this.client.on("error", function (err) {
-    console.log(err);
-  });
+  cbErr && this.client.on("error", cbErr);
 };
 
 RedisCache.prototype.close = function() {
