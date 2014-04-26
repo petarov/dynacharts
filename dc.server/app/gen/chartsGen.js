@@ -5,7 +5,7 @@
 "use strict";
 
 var Log = require('../utils/logger')
- , log = null,
+ , log = null
  , d3 = require('d3')
  , jsdom = require('jsdom')
  , Canvas = require('canvas')

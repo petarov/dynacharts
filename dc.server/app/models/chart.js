@@ -7,12 +7,16 @@
 var uuid = require('node-uuid')
   , tv4 = require('tv4')
   , Log = require('../utils/logger')
-  , ChartsGen = require('../gen/chartsGen');
+  , ChartsGen = require('../gen/chartsGen')
+  , Persistence = require('../db/persistence');
 
 module.exports = function(config) {
 
-  var chartsGenerator = ChartsGen(config)
-    , log = Log(config);
+  var log = Log(config)
+    , chartsGenerator = ChartsGen(config)
+    , cache = Persistence(config).create();
+
+  cache.open();
 
   tv4.addSchema(DataSchema);
   tv4.addSchema(SizeSchema);
@@ -44,7 +48,10 @@ module.exports = function(config) {
           data: svg
         };
 
-        log.verbose('Generated new chart - ' + chart.id);
+        log.verbose('Generated new chart with id=' + chart.id);
+
+        //TODO: save to db
+        cache.put(chart.id, chart);
 
         callback(err, chart);
       });
@@ -57,6 +64,7 @@ module.exports = function(config) {
     update: function(id, spec, callback) {
       //TODO: check permissions
       //TODO: validate spec
+      //      determine what is being updated/patched
     },
 
     del: function(id, callback) {
