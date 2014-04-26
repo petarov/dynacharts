@@ -4,14 +4,17 @@
  */
 "use strict";
 
-
-var d3 = require('d3')
+var Log = require('../utils/logger')
+ , log = null,
+ , d3 = require('d3')
  , jsdom = require('jsdom')
  , Canvas = require('canvas')
  , Image = Canvas.Image
  , XMLSerializer = require('xmldom').XMLSerializer;
 
 module.exports = function(config) {
+
+  log = Log(config);
 
   return {
 
@@ -35,7 +38,7 @@ module.exports = function(config) {
     }
 
   };
-}
+};
 
 function createDOM(cb) {
 
@@ -57,11 +60,9 @@ function createDOM(cb) {
   }});
 }
 
-function importSVG(sourceSVG, cb) {
+function convertSVG2PNG(svgData, w, h, cb) {
   // https://developer.mozilla.org/en/XMLSerializer
-  var svg_xml = new XMLSerializer().serializeToString(sourceSVG);
-
-  //The serialized SVG
+  // var svg_xml = new XMLSerializer().serializeToString(svgData);
   // console.log(svg_xml)
 
   //Need to deal with weird serializations problem in webkit
@@ -71,19 +72,18 @@ function importSVG(sourceSVG, cb) {
   //     svg_xml = svg_xml.replace(/ href/g, ' xlink:href')
   // }
 
-  var canvas = new Canvas(1288, 1288);
-  var ctx = canvas.getContext('2d');
+  var canvas = new Canvas(w, h)
+    , ctx = canvas.getContext('2d')
+    , img = new Image
+    , data = new Buffer(svgData).toString('base64');
 
-  var img = new Image;
   img.onload = function() {
       ctx.drawImage(img, 0, 0);
       cb(null, canvas.toBuffer());
   };
   img.onerror = function(err){
-    console.error(err);
     cb(err, null);
   };
-  var data = new Buffer(sourceSVG).toString('base64');
   img.src = "data:image/svg+xml;base64," + data;
 }
 
