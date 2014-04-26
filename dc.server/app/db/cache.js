@@ -14,10 +14,12 @@ RedisCache.prototype.open = function(options, cbErr) {
   var config = this.config;
 
   this.client = require("redis").createClient(
-    config.db.redis_port,
-    config.db.redis_host);
+    config.cache.redis.port,
+    config.cache.redis.host);
 
-  config.db.redis_secret && this.client.auth(config.db.redis_secret);
+  config.cache.redis.secret && this.client.auth(config.cache.redis.secret);
+
+  this.prefix = config.cache.redis.prefix;
 
   cbErr && this.client.on("error", cbErr);
 };
@@ -27,11 +29,13 @@ RedisCache.prototype.close = function() {
 };
 
 RedisCache.prototype.put = function(key, value, callback) {
-  this.client.set(key, value, callback);
+  var _key = this.prefix ? this.prefix + key : key;
+  this.client.set(_key, value, callback);
 };
 
 RedisCache.prototype.get = function(key, callback) {
-  this.client.get(key, function(err, value) {
+  var _key = this.prefix ? this.prefix + key : key;
+  this.client.get(_key, function(err, value) {
     if (value == null) {
       callback({notFound: true}, null);
       return;
@@ -41,7 +45,8 @@ RedisCache.prototype.get = function(key, callback) {
 };
 
 RedisCache.prototype.delete = function(key, callback) {
-  this.client.del(key, callback);
+  var _key = this.prefix ? this.prefix + key : key;
+  this.client.del(_key, callback);
 };
 
 /**

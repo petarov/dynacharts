@@ -14,19 +14,27 @@ var path = require('path')
  * Common
  */
 var cfgBase = {
+
   root: rootPath,
   url: 'http://localhost:' + port,
   port: port,
   verboseLogging: true,
 
   db: {
-      // Redis
-      redis_host: process.env.REDIS_HOST || '127.0.0.1',
-      redis_port: process.env.REDIS_PORT || '6379',
-      redis_secret: process.env.REDIS_PASSWORD || null
-
-      // Postgres (TODO)
+    // Postgres (TODO)
   },
+
+  cache: {
+
+    // Redis
+    redis: {
+      host: process.env.REDIS_HOST || '127.0.0.1',
+      port: process.env.REDIS_PORT || '6379',
+      secret: process.env.REDIS_PASSWORD || null,
+      prefix: 'dc:'
+    }
+  }
+
 };
 
 var config = {
