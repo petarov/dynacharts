@@ -8,13 +8,13 @@ var uuid = require('node-uuid')
   , tv4 = require('tv4')
   , Log = require('../utils/logger')
   , ChartsGen = require('../gen/chartsGen')
-  , Persistence = require('../db/persistence');
+  , Cache = require('../db/cache');
 
 module.exports = function(config) {
 
   var log = Log(config)
     , chartsGenerator = ChartsGen(config)
-    , cache = Persistence(config).create();
+    , cache = Cache(config).create();
 
   cache.open();
 
