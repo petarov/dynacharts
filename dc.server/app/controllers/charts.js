@@ -7,6 +7,10 @@
 var Log = require('../utils/logger');
 var Chart = require('../models/chart');
 
+/**
+ * Exports
+ */
+
 module.exports = function(app, config) {
 
   var log = Log(config);
@@ -179,6 +183,10 @@ module.exports = function(app, config) {
   });
 
 };
+
+/**
+ * Module
+ */
 
 function validateRequest(req, res) {
   if (!req.is('application/json')) {

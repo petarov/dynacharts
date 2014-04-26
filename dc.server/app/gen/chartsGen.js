@@ -12,6 +12,10 @@ var Log = require('../utils/logger')
  , Image = Canvas.Image
  , XMLSerializer = require('xmldom').XMLSerializer;
 
+/**
+ * Exports
+ */
+
 module.exports = function(config) {
 
   log = Log(config);
@@ -39,6 +43,10 @@ module.exports = function(config) {
 
   };
 };
+
+/**
+ * Module
+ */
 
 function createDOM(cb) {
 

@@ -10,6 +10,10 @@ var uuid = require('node-uuid')
   , ChartsGen = require('../gen/chartsGen')
   , Cache = require('../db/cache');
 
+/**
+ * Exports
+ */
+
 module.exports = function(config) {
 
   var log = Log(config)
@@ -73,6 +77,10 @@ module.exports = function(config) {
 
   }
 };
+
+/**
+ * Module
+ */
 
 var DataSchema = {
   "id": "/ChartDataSchema",

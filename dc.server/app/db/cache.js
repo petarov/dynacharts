@@ -4,6 +4,30 @@
  */
 "use strict";
 
+/**
+ * Exports
+ */
+
+module.exports = function(config) {
+
+    return {
+
+      create: function(options) {
+        options = options || {
+          type: 'redis'
+        };
+
+        if (options.type === 'redis') {
+          return new RedisCache(config);
+        }
+
+        throw 'Unsupported cache type ' + options.type;
+      }
+
+    };
+};
+
+
 function RedisCache(config) {
   this.config = config;
   this.client = null; // explicit
@@ -47,26 +71,4 @@ RedisCache.prototype.get = function(key, callback) {
 RedisCache.prototype.delete = function(key, callback) {
   var _key = this.prefix ? this.prefix + key : key;
   this.client.del(_key, callback);
-};
-
-/**
- * Exports
- */
-module.exports = function(config) {
-
-    return {
-
-      create: function(options) {
-        options = options || {
-          type: 'redis'
-        };
-
-        if (options.type === 'redis') {
-          return new RedisCache(config);
-        }
-
-        throw 'Unsupported cache type ' + options.type;
-      }
-
-    };
 };

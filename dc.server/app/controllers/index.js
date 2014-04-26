@@ -6,6 +6,10 @@
 
 var path = require('path');
 
+/**
+ * Exports
+ */
+
 module.exports = function(app, config) {
 
   var pkg = require(path.join(config.root, 'package.json'));
