@@ -20,7 +20,7 @@ module.exports = function(config) {
     , chartsGenerator = ChartsGen(config)
     , cache = new Cache(config);
 
-  cache.open(function(err) {
+  cache.connect(function(err) {
     if (err) {
       log.error('Failed to connect to cache server! ' + err);
     } else {

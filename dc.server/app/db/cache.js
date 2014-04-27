@@ -34,7 +34,7 @@ function RedisCache(config) {
   this.client = null; // explicit
 }
 
-RedisCache.prototype.open = function(options, callback) {
+RedisCache.prototype.connect = function(options, callback) {
   callback = (typeof options == 'function') ? options : callback;
   options = options || {};
 

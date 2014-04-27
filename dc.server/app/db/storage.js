@@ -12,19 +12,45 @@ var PostgresDB = require('pg');
 
 module.exports = function(config) {
 
-    return {
+  var instance = null;
 
-      open: function(type) {
-        type = type || 'postgres';
+  return {
 
-        if (type === 'postgres') {
-          return new PostgresDB(config);
-        }
+    connect: function(type) {
+      type = type || 'postgres';
 
-        throw 'Unsupported db type ' + options.type;
+      if (type === 'postgres') {
+        instance = new PostgresDB();
       }
 
-    };
+      throw 'Unsupported db type ' + options.type;
+    },
+
+    close: function() {
+      if (!instance) return;
+
+      //TODO
+    },
+
+    put: function(key, value) {
+      if (!instance) return;
+
+      //TODO
+    },
+
+    get: function(key) {
+      if (!instance) return;
+
+      //TODO
+    },
+
+    delete: function(key) {
+      if (!instance) return;
+
+      //TODO
+    }
+
+  };
 };
 
 /**
