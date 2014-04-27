@@ -4,8 +4,7 @@
  */
 "use strict";
 
-var Log = require('../utils/logger')
- , log = null
+var log = require('../utils/logger')
  , d3 = require('d3')
  , jsdom = require('jsdom')
  , Canvas = require('canvas')
@@ -16,9 +15,7 @@ var Log = require('../utils/logger')
  * Exports
  */
 
-module.exports = function(config) {
-
-  log = Log(config);
+module.exports = function() {
 
   return {
 

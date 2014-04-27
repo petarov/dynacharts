@@ -9,8 +9,33 @@ var express = require('express')
   , path = require('path')
   , fs = require('fs')
   , config = require('./config/config')
-  , log = require('./app/utils/logger')(config);
+  , log = require('./app/utils/logger')
+  , Cache = require('./app/db/cache')
+  , Storage = require('./app/db/storage');
 
+var app = express();
+
+/**
+ * Connect to cache server
+ */
+var cache = new Cache(config);
+cache.connect(function(err) {
+  if (err) {
+    log.error('Failed to connect to cache server! ' + err);
+  } else {
+    log.verbose('Connected to cache server.');
+  }
+});
+app.set('cache', cache);
+
+/**
+ * Connect to database server
+ */
+var storage = new Storage(config);
+storage.connect(function(err) {
+  // TODO
+});
+app.set('storage', storage);
 
 /**
  * Find and register Models
@@ -21,8 +46,7 @@ var express = require('express')
 //     require(modelsPath + '/' + file);
 //   }
 // });
-
-var app = express();
+//
 
 require('./config/express')(app, config);
 

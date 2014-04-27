@@ -4,11 +4,11 @@
  */
 "use strict";
 
-var log = require('npmlog');
+var log = require('npmlog')
+  , config = require('../../config/config');
 
-module.exports = function(config) {
-  if (config.verboseLogging) {
-    log.level = 'silly';
-  }
-  return log;
+if (config.verboseLogging) {
+  log.level = 'silly';
 }
+
+module.exports = log;

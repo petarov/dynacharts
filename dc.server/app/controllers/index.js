@@ -39,4 +39,20 @@ module.exports = function(app, config) {
     });
   });
 
+  /**
+   * GET /status HTTP/1.1
+   * Accept: application/json
+   *
+   * Get server node status
+   */
+  app.get('/status', function(req, res) {
+
+    //TODO
+    //
+    res.json({
+      "cache": 'n/a',
+      "database": 'n/a'
+    });
+  });
+
 };

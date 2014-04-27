@@ -16,7 +16,10 @@ module.exports = function(config) {
 
   return {
 
-    connect: function(type) {
+    connect: function(type, callback) {
+      callback = (typeof type == 'function') ? type : callback;
+      type = (typeof type == 'function') ? 'postgres' : type;
+
       type = type || 'postgres';
 
       if (type === 'postgres') {

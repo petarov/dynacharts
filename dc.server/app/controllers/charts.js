@@ -4,8 +4,8 @@
  */
 "use strict";
 
-var Log = require('../utils/logger');
-var Chart = require('../models/chart');
+var log = require('../utils/logger')
+  , Chart = require('../models/chart');
 
 /**
  * Exports
@@ -13,8 +13,7 @@ var Chart = require('../models/chart');
 
 module.exports = function(app, config) {
 
-  var log = Log(config);
-  var chartModel = Chart(config);
+  var chartModel = Chart(app);
 
   /**
    * GET /charts HTTP/1.1
