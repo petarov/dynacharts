@@ -14,7 +14,7 @@ module.exports = function(config) {
 
     return {
 
-      create: function(type) {
+      open: function(type) {
         type = type || 'postgres';
 
         if (type === 'postgres') {

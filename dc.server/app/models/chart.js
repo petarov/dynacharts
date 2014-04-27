@@ -18,9 +18,11 @@ module.exports = function(config) {
 
   var log = Log(config)
     , chartsGenerator = ChartsGen(config)
-    , cache = Cache(config).create();
+    , cache = new Cache(config);
 
-  cache.open();
+  cache.open(function(err) {
+    log.error('Failed to connect to cache server! ' + err);
+  });
 
   tv4.addSchema(DataSchema);
   tv4.addSchema(SizeSchema);

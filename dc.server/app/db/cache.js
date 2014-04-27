@@ -8,24 +8,25 @@
  * Exports
  */
 
-module.exports = function(config) {
+module.exports = exports = RedisCache;
+// module.exports = function() {
 
-    return {
+//     return {
 
-      create: function(options) {
-        options = options || {
-          type: 'redis'
-        };
+//       create: function(config, options) {
+//         options = options || {
+//           type: 'redis'
+//         };
 
-        if (options.type === 'redis') {
-          return new RedisCache(config);
-        }
+//         if (options.type === 'redis') {
+//           return new RedisCache(config);
+//         }
 
-        throw 'Unsupported cache type ' + options.type;
-      }
+//         throw 'Unsupported cache type ' + options.type;
+//       }
 
-    };
-};
+//     };
+// };
 
 
 function RedisCache(config) {
@@ -34,7 +35,9 @@ function RedisCache(config) {
 }
 
 RedisCache.prototype.open = function(options, cbErr) {
+  cbErr = (typeof options == 'function') ? options : cbErr;
   options = options || {};
+
   var config = this.config;
 
   this.client = require("redis").createClient(
@@ -53,11 +56,15 @@ RedisCache.prototype.close = function() {
 };
 
 RedisCache.prototype.put = function(key, value, callback) {
+  if (!this.client) return;
+
   var _key = this.prefix ? this.prefix + key : key;
   this.client.set(_key, value, callback);
 };
 
 RedisCache.prototype.get = function(key, callback) {
+  if (!this.client) return;
+
   var _key = this.prefix ? this.prefix + key : key;
   this.client.get(_key, function(err, value) {
     if (value == null) {
@@ -69,6 +76,8 @@ RedisCache.prototype.get = function(key, callback) {
 };
 
 RedisCache.prototype.delete = function(key, callback) {
+  if (!this.client) return;
+
   var _key = this.prefix ? this.prefix + key : key;
   this.client.del(_key, callback);
 };
