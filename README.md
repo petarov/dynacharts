@@ -43,14 +43,14 @@ To deploy the app within the Jetty application server:
 Information relevant to the development process.
 
 ## Coding style
-Please read the following documents in order to understand how source code should be formatted and written.
+Please read the the links below in order to understand how source code should be formatted and written.
 
 Important:
-  * Use **100 characters** column width.
-  * Use *spaces* instead of *tabs* for code indentation. This is configurable in your IDE / Editor.
-  * Use *2 spaces* idnentation for Node.js / Javascript source code.
-  * Use *4 spaces* indentation for Java source code.
-    
+
+    * Use **100 characters** column width.
+    * Use *spaces* instead of *tabs* for code indentation. This is configurable in your IDE / Editor.
+    * Use *2 spaces* idnentation for Node.js / Javascript source code.
+    * Use *4 spaces* indentation for Java source code.
 
 For Java development refer to [Google Java Style](http://google-styleguide.googlecode.com/svn/trunk/javaguide.html).
 
