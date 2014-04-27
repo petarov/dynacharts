@@ -50,7 +50,7 @@ _.extend(config['development'], _.clone(cfgBase), {
     app: {
       name: 'dc.server-dev'
     },
-    db: 'mongodb://localhost/<%= _.slugify(appname) %>-development'
+    db: 'postgres://postgres:1234@localhost/postgres-development'
 });
 /**
  * Test deployment
@@ -59,7 +59,7 @@ _.extend(config['test'], _.clone(cfgBase), {
     app: {
       name: 'dc.server-test'
     },
-    db: 'mongodb://localhost/<%= _.slugify(appname) %>-test'
+    db: 'postgres://postgres:1234@localhost/postgres-test'
 });
 /**
  * Production deployment
@@ -70,7 +70,7 @@ _.extend(config['production'], _.clone(cfgBase), {
     app: {
       name: 'dc.server'
     },
-    db: 'mongodb://localhost/<%= _.slugify(appname) %>-production'
+    db: 'postgres://postgres:1234@localhost/postgres-production'
 });
 
 module.exports = config[env];
