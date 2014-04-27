@@ -8,7 +8,8 @@ var uuid = require('node-uuid')
   , tv4 = require('tv4')
   , Log = require('../utils/logger')
   , ChartsGen = require('../gen/chartsGen')
-  , Cache = require('../db/cache');
+  , Cache = require('../db/cache')
+  , Storage = require('../db/storage');
 
 /**
  * Exports
@@ -18,8 +19,14 @@ module.exports = function(config) {
 
   var log = Log(config)
     , chartsGenerator = ChartsGen(config)
-    , cache = new Cache(config);
+    , cache = new Cache(config)
+    , storage = new Storage(config);
 
+  tv4.addSchema(DataSchema);
+  tv4.addSchema(SizeSchema);
+  tv4.addSchema(StylesSchema);
+
+  // TODO: Move this to bootstrap
   cache.connect(function(err) {
     if (err) {
       log.error('Failed to connect to cache server! ' + err);
@@ -28,9 +35,9 @@ module.exports = function(config) {
     }
   });
 
-  tv4.addSchema(DataSchema);
-  tv4.addSchema(SizeSchema);
-  tv4.addSchema(StylesSchema);
+  storage.connect();
+
+  /////////////////
 
   return {
 

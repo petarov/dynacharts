@@ -4,7 +4,7 @@
  */
 "use strict";
 
-var PostgresDB = require('pg');
+var PostgresDB = require('./pg');
 
 /**
  * Exports
@@ -21,9 +21,9 @@ module.exports = function(config) {
 
       if (type === 'postgres') {
         instance = new PostgresDB();
+      } else {
+        throw 'Unsupported db type ' + type;
       }
-
-      throw 'Unsupported db type ' + options.type;
     },
 
     close: function() {
