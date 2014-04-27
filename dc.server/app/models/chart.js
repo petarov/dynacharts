@@ -21,7 +21,11 @@ module.exports = function(config) {
     , cache = new Cache(config);
 
   cache.open(function(err) {
-    log.error('Failed to connect to cache server! ' + err);
+    if (err) {
+      log.error('Failed to connect to cache server! ' + err);
+    } else {
+      log.verbose('Connected to cache server.');
+    }
   });
 
   tv4.addSchema(DataSchema);

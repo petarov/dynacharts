@@ -34,8 +34,8 @@ function RedisCache(config) {
   this.client = null; // explicit
 }
 
-RedisCache.prototype.open = function(options, cbErr) {
-  cbErr = (typeof options == 'function') ? options : cbErr;
+RedisCache.prototype.open = function(options, callback) {
+  callback = (typeof options == 'function') ? options : callback;
   options = options || {};
 
   var config = this.config;
@@ -48,7 +48,11 @@ RedisCache.prototype.open = function(options, cbErr) {
 
   this.prefix = config.cache.redis.prefix;
 
-  cbErr && this.client.on("error", cbErr);
+  callback && this.client.on("error", function(err) {
+    callback(err);
+  });
+  callback && this.client.on("ready", callback);
+
 };
 
 RedisCache.prototype.close = function() {
