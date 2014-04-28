@@ -5,11 +5,6 @@ Node.js HTTP Server Backend
 
 A Web platform that generates and provides real-time updates of charts and diagrams.
 
-# Getting Started
-
-  * `dc.server` - Node.js REST backend
-  * `dc.server.java` - Java REST backend (Deprecated)
-
 ## Requirements
 ### Linux/OSX
 
