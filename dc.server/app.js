@@ -8,6 +8,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
+  , errors = require('./app/errors')
   , config = require('./config/config')
   , log = require('./app/utils/logger')
   , Cache = require('./app/db/cache')
@@ -33,7 +34,10 @@ app.set('cache', cache);
  */
 var storage = new Storage(config);
 storage.connect(function(err) {
-  // TODO
+  if (err) {
+    log.error(err);
+    process.exit(errors.DB_CONNECT);
+  }
 });
 app.set('storage', storage);
 

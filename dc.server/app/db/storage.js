@@ -16,17 +16,9 @@ module.exports = function(config) {
 
   return {
 
-    connect: function(type, callback) {
-      callback = (typeof type == 'function') ? type : callback;
-      type = (typeof type == 'function') ? 'postgres' : type;
-
-      type = type || 'postgres';
-
-      if (type === 'postgres') {
-        instance = new PostgresDB();
-      } else {
-        throw 'Unsupported db type ' + type;
-      }
+    connect: function(callback) {
+      instance = new PostgresDB();
+      instance.connect(config.db, callback);
     },
 
     close: function() {
@@ -35,19 +27,19 @@ module.exports = function(config) {
       //TODO
     },
 
-    put: function(key, value) {
+    put: function(key, value, callback) {
       if (!instance) return;
 
       //TODO
     },
 
-    get: function(key) {
+    get: function(key, callback) {
       if (!instance) return;
 
       //TODO
     },
 
-    delete: function(key) {
+    delete: function(key, callback) {
       if (!instance) return;
 
       //TODO

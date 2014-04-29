@@ -17,3 +17,9 @@ module.exports = PostgresDB;
 function PostgresDB() {
   // TODO
 }
+
+PostgresDB.prototype.connect = function(connStr, callback) {
+  // TODO
+  //
+  callback && callback(null, {});
+};
